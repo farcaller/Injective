@@ -26,8 +26,11 @@
 
 #import <Foundation/Foundation.h>
 #import "InjectiveContext.h"
+#import "InjectiveCateroryFix.h"
 
-@implementation NSObject (Injection)
+INJECTIVE_FIX_CATEGORY_BUG(NSObject_Injective)
+
+@implementation NSObject (Injective)
 
 + (id)injectiveInstantiateWithProperties:(NSDictionary *)properties
 {
