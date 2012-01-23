@@ -88,7 +88,9 @@
 	__block id instance = nil;
 	NSString *klassName = NSStringFromClass(klass);
 	
-	dispatch_sync(_queue, ^{ reg = [_registeredClasses objectForKey:klassName]; });
+	dispatch_sync(_queue, ^{
+		reg = [_registeredClasses objectForKey:klassName];
+	});
 	
 	if(reg) {
 		if(reg.mode == InjectiveContextInstantinationModeFactory) {
