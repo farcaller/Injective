@@ -54,7 +54,7 @@
 
 + (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
 {
-	return [[[self alloc] init] autorelease];
+	return [[[self alloc] initWithClass:klass instantinationMode:mode] autorelease];
 }
 
 @end
