@@ -96,13 +96,13 @@
 		if(reg.mode == InjectiveContextInstantinationModeFactory) {
 			instance = [self createClassInstanceFromRegistration:reg withProperties:props];
 		} else {
-			instance = [_registeredClassesSingletonInstances objectForKey:klassName];
-			dispatch_sync(dispatch_get_main_queue(), ^{ 
+			@synchronized(klass) {
+				instance = [_registeredClassesSingletonInstances objectForKey:klassName];
 				if(!instance) {
 					instance = [self createClassInstanceFromRegistration:reg withProperties:nil];
 					[_registeredClassesSingletonInstances setObject:instance forKey:klassName];
 				}
-			});
+			};
 		}
 	}
 	return instance;
