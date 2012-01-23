@@ -31,8 +31,9 @@
 
 @property (nonatomic, readonly) Class klass;
 @property (nonatomic, readonly) InjectiveContextInstantinationMode mode;
+@property (nonatomic, readonly) InjectiveContextInstantinationBlock block;
 @property (nonatomic, readwrite, retain) NSDictionary *registeredProperties;
 
-+ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode;
++ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 
 @end

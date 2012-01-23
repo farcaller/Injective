@@ -73,12 +73,17 @@
 
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
 {
+	[self registerClass:klass instantinationMode:mode instantinationBlock:nil];
+}
+
+- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+{
 	NSString *klassName = NSStringFromClass(klass);
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
 			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
-		[_registeredClasses setObject:[InjectiveClassRegistration registrationWithClass:klass instantinationMode:mode] forKey:klassName];
+		[_registeredClasses setObject:[InjectiveClassRegistration registrationWithClass:klass instantinationMode:mode instantinationBlock:block] forKey:klassName];
 	});
 }
 
@@ -112,7 +117,12 @@
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props
 {
 	Class klass = reg.klass;
-	id instance = [[[klass alloc] init] autorelease];
+	id instance;
+	if(reg.block) {
+		instance = reg.block(props);
+	} else {
+		instance = [[[klass alloc] init] autorelease];
+	}
 	
 	// check if the class requires pre-binding setup
 	if([klass respondsToSelector:@selector(injective_requredProperties)]) {

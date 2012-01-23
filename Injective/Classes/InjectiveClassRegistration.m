@@ -28,38 +28,40 @@
 
 @interface InjectiveClassRegistration ()
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode;
+- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 
 @end
 
 
 @implementation InjectiveClassRegistration
 
-@synthesize klass = _klass, mode = _mode, registeredProperties = _registeredProperties;
+@synthesize klass = _klass, mode = _mode, registeredProperties = _registeredProperties, block = _block;
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
+- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
 {
 	if( (self = [super init]) ) {
 		_klass = klass;
 		_mode = mode;
+		_block = [block copy];
 	}
 	return self;
 }
 
 - (void)dealloc
 {
+	[_block release];
 	[_registeredProperties release];
 	[super dealloc];
 }
 
-+ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
++ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
 {
-	return [[[self alloc] initWithClass:klass instantinationMode:mode] autorelease];
+	return [[[self alloc] initWithClass:klass instantinationMode:mode instantinationBlock:block] autorelease];
 }
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<InjectiveClassRegistration %@ %s>", _klass, _mode == 0 ? "F" : "S"];
+	return [NSString stringWithFormat:@"<InjectiveClassRegistration %@ %s%s>", _klass, _mode == 0 ? "F" : "S", _block == nil ? "" : " with block"];
 }
 
 @end
