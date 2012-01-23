@@ -57,7 +57,8 @@
     if( (self = [super init]) ) {
 		_registeredClasses = [[NSMutableDictionary alloc] init];
 		_registeredClassesSingletonInstances = [[NSMutableDictionary alloc] init];
-		_queue = dispatch_queue_create([[NSString stringWithFormat:@"%@ Injective Queue", self] UTF8String], DISPATCH_QUEUE_SERIAL);
+		NSString *queueName = [NSString stringWithFormat:@"net.farcaller.injective.%p.main", self];
+		_queue = dispatch_queue_create([queueName cStringUsingEncoding:NSASCIIStringEncoding], DISPATCH_QUEUE_SERIAL);
 	}
     return self;
 }
