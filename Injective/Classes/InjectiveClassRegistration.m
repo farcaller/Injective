@@ -57,4 +57,9 @@
 	return [[[self alloc] initWithClass:klass instantinationMode:mode] autorelease];
 }
 
+- (NSString *)description
+{
+	return [NSString stringWithFormat:@"<InjectiveClassRegistration %@ %s>", _klass, _mode == 0 ? "F" : "S"];
+}
+
 @end
