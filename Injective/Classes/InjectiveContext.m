@@ -197,7 +197,7 @@
 				[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%s' of class %@ as it does not "
 				 @"contain the ending '\"'. Attributes: '%s'", cPropName, NSStringFromClass(klass), cPropAttrib];
 			}
-			cMappedKlassNameEnd = '\0';
+			*cMappedKlassNameEnd = '\0';
 			NSString *mappedKlassName = [NSString stringWithCString:cMappedKlassName encoding:NSASCIIStringEncoding];
 			free(cMappedKlassName);
 			
