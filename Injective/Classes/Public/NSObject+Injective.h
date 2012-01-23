@@ -46,27 +46,23 @@
 
 @end
 
-#define injective_register(klass, ...) \
+#define injective_register(klass) \
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
 			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeFactory]; \
 		} \
-	} \
-	  \
-	+ (NSSet *)injective_requredProperties \
-	{ \
-		return [NSSet setWithObjects:__VA_ARGS__, nil]; \
 	}
 
-#define injective_register_singleton(klass, ...) \
+#define injective_register_singleton(klass) \
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
 			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeSingleton]; \
 		} \
-	} \
-	  \
+	}
+
+#define injective_requires(...) \
 	+ (NSSet *)injective_requredProperties \
 	{ \
 		return [NSSet setWithObjects:__VA_ARGS__, nil]; \
