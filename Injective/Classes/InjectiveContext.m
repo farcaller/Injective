@@ -148,7 +148,9 @@
 		// check if we have all the required properties on hand
 		NSMutableSet *registeredPropsSet = [NSMutableSet setWithArray:[registeredProperties allKeys]];
 		[registeredPropsSet addObjectsFromArray:[props allKeys]];
-		BOOL hasMissingProperties = [[klass injective_requredProperties] isSubsetOfSet:registeredPropsSet];
+		NSMutableSet *requiredPropsSet = [NSMutableSet setWithSet:[klass injective_requredProperties]];
+		[requiredPropsSet minusSet:registeredPropsSet];
+		BOOL hasMissingProperties = [requiredPropsSet count] > 0;
 		if(hasMissingProperties) {
 			[NSException raise:NSInternalInconsistencyException format:@"Class %@ instantinated with %@, but a set of %@ was requested.", NSStringFromClass(klass),
 			 [klass injective_requredProperties], registeredPropsSet];
