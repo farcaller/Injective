@@ -37,6 +37,7 @@ typedef id(^InjectiveContextInstantinationBlock)(NSDictionary *props);
 @interface InjectiveContext : NSObject
 
 + (InjectiveContext *)defaultContext;
++ (void)setDefaultContext:(InjectiveContext *)context;
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode;
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;

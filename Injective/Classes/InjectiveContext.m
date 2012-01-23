@@ -28,12 +28,17 @@
 #import "InjectiveClassRegistration.h"
 #import <objc/runtime.h>
 
+
+static InjectiveContext *DefaultContext = nil;
+
+
 @interface InjectiveContext ()
 
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
 
 @end
+
 
 @implementation InjectiveContext
 {
@@ -44,12 +49,15 @@
 
 + (InjectiveContext *)defaultContext
 {
-	static dispatch_once_t onceToken;
-	static InjectiveContext *context;
-	dispatch_once(&onceToken, ^{
-		context = [[self alloc] init];
-	});
-	return context;
+	return DefaultContext;
+}
+
++ (void)setDefaultContext:(InjectiveContext *)context
+{
+	if(DefaultContext != context) {
+		[DefaultContext release];
+		DefaultContext = [context retain];
+	}
 }
 
 - (id)init
