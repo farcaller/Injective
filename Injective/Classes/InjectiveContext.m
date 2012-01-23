@@ -135,6 +135,8 @@
 			if(!propKlass) {
 				[NSException raise:NSInternalInconsistencyException format:@"Class %@ is not registered in the runtime, but is required for %@.%@", propKlassName,
 				 NSStringFromClass(klass), propName];
+			} else {
+				[propKlass class];
 			}
 			id propInstance = [self instantinateClass:propKlass withProperties:nil];
 			if(!propInstance) {
