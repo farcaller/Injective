@@ -36,6 +36,7 @@ static InjectiveContext *DefaultContext = nil;
 
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 
 @end
 
@@ -87,12 +88,35 @@ static InjectiveContext *DefaultContext = nil;
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
 {
 	NSString *klassName = NSStringFromClass(klass);
+	[self registerClass:klass forClassName:klassName instantinationMode:mode instantinationBlock:block];
+}
+
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+{
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
 			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
 		[_registeredClasses setObject:[InjectiveClassRegistration registrationWithClass:klass instantinationMode:mode instantinationBlock:block] forKey:klassName];
 	});
+}
+
+- (void)registerSingletonInstance:(id)obj forClass:(Class)klass
+{
+	NSString *klassName = NSStringFromClass(klass);
+	@synchronized(klass) {
+		[self
+		 registerClass:klass
+		 forClassName:klassName
+		 instantinationMode:InjectiveContextInstantinationModeSingleton
+		 instantinationBlock:nil];
+		
+		id instance = [_registeredClassesSingletonInstances objectForKey:klassName];
+		if(instance) {
+			[NSException raise:NSInternalInconsistencyException format:@"Class %@ has the instance %@ registered, cannot register %@", klassName, instance, obj];
+		}
+		[_registeredClassesSingletonInstances setObject:obj forKey:klassName];
+	}
 }
 
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props

@@ -40,6 +40,7 @@ typedef id(^InjectiveContextInstantinationBlock)(NSDictionary *props);
 + (void)setDefaultContext:(InjectiveContext *)context;
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode;
 - (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
 
 @end
