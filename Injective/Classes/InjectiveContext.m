@@ -37,6 +37,7 @@ static InjectiveContext *DefaultContext = nil;
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
 - (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (NSSet *)gatherPropertiesForKlass:(Class)klass;
 
 @end
 
@@ -206,47 +207,52 @@ static InjectiveContext *DefaultContext = nil;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass
 {
 	NSMutableDictionary *propsDict = [NSMutableDictionary dictionary];
-	NSSet *requiredProperties = [klass injective_requredProperties];
-	unsigned int outCount, i;
-	objc_property_t *properties = class_copyPropertyList(klass, &outCount);
-	for (i = 0; i < outCount; i++) {
-		objc_property_t property = properties[i];
-		
-		const char *cPropName = property_getName(property);
-		NSString *propName = [NSString stringWithCString:cPropName encoding:NSASCIIStringEncoding];
-		// check if we really need this property
-		if([requiredProperties containsObject:propName]) {
-			const char *cPropAttrib = property_getAttributes(property);
-			// the attributes string is always at least 2 chars long, and the 2nd char must be @ for us to proceed
-			if(cPropAttrib[1] != '@') {
-				[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%s' of class %@ as it does not "
-				 @"point to object. Attributes: '%s'", cPropName, NSStringFromClass(klass), cPropAttrib];
-			}
-			// the attributes string must be at least 5 chars long: T@"<one char here>"
-			if(strlen(cPropAttrib) < 5) {
-				[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%s' of class %@ as it does not "
-				 @"contain enough chars to parse class name. Attributes: '%s'", cPropName, NSStringFromClass(klass), cPropAttrib];
-			}
-			cPropAttrib = cPropAttrib + 3;
-			// we don't support protocols yet
-			if(cPropAttrib[0] == '<') {
-				[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%s' of class %@ as it "
-				 @"maps to a Protocol, and we don't support them yet. Attributes: '%s'", cPropName, NSStringFromClass(klass), cPropAttrib];
-			}
-			char *cMappedKlassName = strdup(cPropAttrib);
-			char *cMappedKlassNameEnd = strchr(cMappedKlassName, '"');
-			if(cMappedKlassNameEnd == NULL) {
-				[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%s' of class %@ as it does not "
-				 @"contain the ending '\"'. Attributes: '%s'", cPropName, NSStringFromClass(klass), cPropAttrib];
-			}
-			*cMappedKlassNameEnd = '\0';
-			NSString *mappedKlassName = [NSString stringWithCString:cMappedKlassName encoding:NSASCIIStringEncoding];
-			free(cMappedKlassName);
-			
-			[propsDict setObject:mappedKlassName forKey:propName];
+	NSSet *requiredProperties = [self gatherPropertiesForKlass:klass];
+	
+	for(NSString *propName in requiredProperties) {
+		objc_property_t property = class_getProperty(klass, [propName cStringUsingEncoding:NSASCIIStringEncoding]);
+		const char *cPropAttrib = property_getAttributes(property);
+		// the attributes string is always at least 2 chars long, and the 2nd char must be @ for us to proceed
+		if(cPropAttrib[1] != '@') {
+			[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%@' of class %@ as it does not "
+			 @"point to object. Attributes: '%s'", propName, NSStringFromClass(klass), cPropAttrib];
 		}
+		// the attributes string must be at least 5 chars long: T@"<one char here>"
+		if(strlen(cPropAttrib) < 5) {
+			[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%@' of class %@ as it does not "
+			 @"contain enough chars to parse class name. Attributes: '%s'", propName, NSStringFromClass(klass), cPropAttrib];
+		}
+		cPropAttrib = cPropAttrib + 3;
+		// we don't support protocols yet
+		if(cPropAttrib[0] == '<') {
+			[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%@' of class %@ as it "
+			 @"maps to a Protocol, and we don't support them yet. Attributes: '%s'", propName, NSStringFromClass(klass), cPropAttrib];
+		}
+		char *cMappedKlassName = strdup(cPropAttrib);
+		char *cMappedKlassNameEnd = strchr(cMappedKlassName, '"');
+		if(cMappedKlassNameEnd == NULL) {
+			[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%@' of class %@ as it does not "
+			 @"contain the ending '\"'. Attributes: '%s'", propName, NSStringFromClass(klass), cPropAttrib];
+		}
+		*cMappedKlassNameEnd = '\0';
+		NSString *mappedKlassName = [NSString stringWithCString:cMappedKlassName encoding:NSASCIIStringEncoding];
+		free(cMappedKlassName);
+		
+		[propsDict setObject:mappedKlassName forKey:propName];
 	}
+	
 	return [[propsDict copy] autorelease];
+}
+
+- (NSSet *)gatherPropertiesForKlass:(Class)klass
+{
+	NSMutableSet *ms = [NSMutableSet setWithSet:[klass injective_requredProperties]];
+	NSLog(@"IJ: fetching class props for %@: %@", klass, ms);
+	Class superKlass = class_getSuperclass(klass);
+	if([superKlass respondsToSelector:@selector(injective_requredProperties)]) {
+		[ms unionSet:[self gatherPropertiesForKlass:superKlass]];
+	}
+	return ms;
 }
 
 @end
