@@ -247,7 +247,6 @@ static InjectiveContext *DefaultContext = nil;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass
 {
 	NSMutableSet *ms = [NSMutableSet setWithSet:[klass injective_requredProperties]];
-	NSLog(@"IJ: fetching class props for %@: %@", klass, ms);
 	Class superKlass = class_getSuperclass(klass);
 	if([superKlass respondsToSelector:@selector(injective_requredProperties)]) {
 		[ms unionSet:[self gatherPropertiesForKlass:superKlass]];
