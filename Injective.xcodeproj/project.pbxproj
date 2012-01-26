@@ -6,14 +6,33 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A5BD901814D19A9800A7ADBC /* Lipo */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A5BD901914D19A9800A7ADBC /* Build configuration list for PBXAggregateTarget "Lipo" */;
+			buildPhases = (
+				A5BD901D14D19A9C00A7ADBC /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Lipo;
+			productName = Lipo;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A532C00014CB580A0034A43C /* InjectiveContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* InjectiveContext.m */; };
 		A532C00814CB5A370034A43C /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; };
 		A532C00F14CB5C470034A43C /* InjectiveClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */; };
 		A532C01014CB5C470034A43C /* InjectiveClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */; };
+		A5BD901114D1996800A7ADBC /* InjectiveContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* InjectiveContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5BD901214D1996A00A7ADBC /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5BD901314D1996D00A7ADBC /* InjectiveClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
+		A5BD901514D1998200A7ADBC /* InjectiveContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* InjectiveContext.m */; };
+		A5BD901614D1998800A7ADBC /* NSObject+Injective.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */; };
+		A5BD901714D1998800A7ADBC /* InjectiveClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */; };
 		A5F0CED914CC6D4A00B18B11 /* NSObject+Injective.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */; };
-		A5F0CF0114CCABE500B18B11 /* InjectiveCateroryFix.h in Headers */ = {isa = PBXBuildFile; fileRef = A5F0CF0014CCABE500B18B11 /* InjectiveCateroryFix.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +44,8 @@
 		A532C00614CB5A370034A43C /* NSObject+Injective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Injective.h"; sourceTree = "<group>"; };
 		A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectiveClassRegistration.h; sourceTree = "<group>"; };
 		A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectiveClassRegistration.m; sourceTree = "<group>"; };
+		A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectiveFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
-		A5F0CF0014CCABE500B18B11 /* InjectiveCateroryFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectiveCateroryFix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +57,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5BD8FFC14D1962F00A7ADBC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -45,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				A532BFFB14CB580A0034A43C /* Injective */,
+				A5BD900214D1962F00A7ADBC /* InjectiveFramework */,
 				A532BFF814CB580A0034A43C /* Frameworks */,
 				A532BFF714CB580A0034A43C /* Products */,
 			);
@@ -54,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				A532BFF614CB580A0034A43C /* libInjective.a */,
+				A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +119,6 @@
 				A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */,
 				A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */,
 				A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */,
-				A5F0CF0014CCABE500B18B11 /* InjectiveCateroryFix.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -105,6 +132,13 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		A5BD900214D1962F00A7ADBC /* InjectiveFramework */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InjectiveFramework;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -114,7 +148,16 @@
 			files = (
 				A532C00814CB5A370034A43C /* NSObject+Injective.h in Headers */,
 				A532C00F14CB5C470034A43C /* InjectiveClassRegistration.h in Headers */,
-				A5F0CF0114CCABE500B18B11 /* InjectiveCateroryFix.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5BD901014D1995C00A7ADBC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5BD901114D1996800A7ADBC /* InjectiveContext.h in Headers */,
+				A5BD901214D1996A00A7ADBC /* NSObject+Injective.h in Headers */,
+				A5BD901314D1996D00A7ADBC /* InjectiveClassRegistration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +181,24 @@
 			productReference = A532BFF614CB580A0034A43C /* libInjective.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		A5BD8FFE14D1962F00A7ADBC /* InjectiveFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5BD900C14D1962F00A7ADBC /* Build configuration list for PBXNativeTarget "InjectiveFramework" */;
+			buildPhases = (
+				A5BD8FFB14D1962F00A7ADBC /* Sources */,
+				A5BD8FFC14D1962F00A7ADBC /* Frameworks */,
+				A5BD8FFD14D1962F00A7ADBC /* Resources */,
+				A5BD901014D1995C00A7ADBC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InjectiveFramework;
+			productName = InjectiveFramework;
+			productReference = A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -160,9 +221,37 @@
 			projectRoot = "";
 			targets = (
 				A532BFF514CB580A0034A43C /* Injective */,
+				A5BD8FFE14D1962F00A7ADBC /* InjectiveFramework */,
+				A5BD901814D19A9800A7ADBC /* Lipo */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A5BD8FFD14D1962F00A7ADBC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A5BD901D14D19A9C00A7ADBC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${ACTION}\" = \"build\" ]; then\n    INSTALL_DIR=${SYMROOT}/Injective.framework\n    DEVICE_DIR=${SYMROOT}/Release-iphoneos\n    SIMULATOR_DIR=${SYMROOT}/Release-iphonesimulator\n\n    # Create and renews the final product folder.\n    mkdir -p \"${INSTALL_DIR}\"\n    rm -rf \"${INSTALL_DIR}\"\n    rm -rf \"${INSTALL_DIR}/Injective\"\n\n    # Copy the header files to the final product folder.\n    ditto \"${DEVICE_DIR}/Injective.framework/Headers\" \"${INSTALL_DIR}/Headers\"\n\n    # Use the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\n    lipo -create \"${DEVICE_DIR}/Injective.framework/Injective\" \"${SIMULATOR_DIR}/Injective.framework/Injective\" -output \"${INSTALL_DIR}/Injective\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A532BFF214CB580A0034A43C /* Sources */ = {
@@ -175,6 +264,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5BD8FFB14D1962F00A7ADBC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5BD901614D1998800A7ADBC /* NSObject+Injective.m in Sources */,
+				A5BD901714D1998800A7ADBC /* InjectiveClassRegistration.m in Sources */,
+				A5BD901514D1998200A7ADBC /* InjectiveContext.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -184,6 +283,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -197,6 +297,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -207,12 +308,14 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -224,7 +327,6 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -236,7 +338,6 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -248,6 +349,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -264,6 +366,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PROFILING_CODE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_LDFLAGS = (
 					"-L/Developer/usr/lib/",
 					"-lprofile_rt",
@@ -278,11 +381,70 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Profile;
+		};
+		A5BD900914D1962F00A7ADBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = Injective;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		A5BD900A14D1962F00A7ADBC /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = Injective;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Profile;
+		};
+		A5BD900B14D1962F00A7ADBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = Injective;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		A5BD901A14D19A9800A7ADBC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A5BD901B14D19A9800A7ADBC /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Profile;
+		};
+		A5BD901C14D19A9800A7ADBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -306,6 +468,24 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A5BD900C14D1962F00A7ADBC /* Build configuration list for PBXNativeTarget "InjectiveFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5BD900914D1962F00A7ADBC /* Debug */,
+				A5BD900A14D1962F00A7ADBC /* Profile */,
+				A5BD900B14D1962F00A7ADBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A5BD901914D19A9800A7ADBC /* Build configuration list for PBXAggregateTarget "Lipo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5BD901A14D19A9800A7ADBC /* Debug */,
+				A5BD901B14D19A9800A7ADBC /* Profile */,
+				A5BD901C14D19A9800A7ADBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

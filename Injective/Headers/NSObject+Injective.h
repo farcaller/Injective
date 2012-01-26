@@ -26,6 +26,8 @@
 
 #import <Foundation/Foundation.h>
 
+void InjectiveFixTheLdGoingWildPlsPls();
+
 @interface NSObject (InjectiveProtocol)
 
 /** An array of properties, that must be set for object to come alive

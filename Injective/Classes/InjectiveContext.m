@@ -28,7 +28,6 @@
 #import "InjectiveClassRegistration.h"
 #import <objc/runtime.h>
 
-
 static InjectiveContext *DefaultContext = nil;
 
 
@@ -47,6 +46,11 @@ static InjectiveContext *DefaultContext = nil;
 	NSMutableDictionary *_registeredClasses;
 	NSMutableDictionary *_registeredClassesSingletonInstances;
 	dispatch_queue_t _queue;
+}
+
++ (void)initialize
+{
+	InjectiveFixTheLdGoingWildPlsPls();
 }
 
 + (InjectiveContext *)defaultContext

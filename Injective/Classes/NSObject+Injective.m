@@ -28,7 +28,10 @@
 #import "InjectiveContext.h"
 #import "InjectiveCateroryFix.h"
 
-INJECTIVE_FIX_CATEGORY_BUG(NSObject_Injective)
+void InjectiveFixTheLdGoingWildPlsPls()
+{
+	return;
+}
 
 @implementation NSObject (Injective)
 
