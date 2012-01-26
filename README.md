@@ -148,7 +148,7 @@ injective_register(MyDetailViewController)
 @end
 ```
 
-There's another handy macro for you – `injective_requires`, that does the same job:
+There's another handy macro for you -- `injective_requires`, that does the same job:
 
 ```objc
 @implementation MyDetailViewController
