@@ -46,7 +46,7 @@ This will allow you to use Injective without requiring you to #import it everywh
 
 ### Precompiled version
 
-*TODO*: publish precompiled version
+There is a target to build Injective.framework, however at the current point there is no stable release. Precompiled builds would be added later, for now it's suggested that you use a recent git checkout.
 
 ## Usage
 
