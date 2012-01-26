@@ -173,7 +173,7 @@ Injective is a MIT-licensed framework. See details in *LICENSE* file.
 
 # Credits
 
-Injective framework is originally written by Vladimir "Farcaller" Pouzanov <farcaller@gmail.com>.
+Injective framework is originally written by Vladimir "Farcaller" Pouzanov <<farcaller@gmail.com>>.
 
 A few ideas are based on Objection framework (https://github.com/atomicobject/objection).
 
