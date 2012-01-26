@@ -69,6 +69,7 @@
 		A532BFFB14CB580A0034A43C /* Injective */ = {
 			isa = PBXGroup;
 			children = (
+				A5BD8FC214D192C200A7ADBC /* Headers */,
 				A532C00A14CB5BAE0034A43C /* Classes */,
 				A532BFFC14CB580A0034A43C /* Supporting Files */,
 			);
@@ -86,31 +87,22 @@
 		A532C00A14CB5BAE0034A43C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A532C00B14CB5BBE0034A43C /* Public */,
-				A532C00C14CB5C230034A43C /* Private */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		A532C00B14CB5BBE0034A43C /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				A532BFFE14CB580A0034A43C /* InjectiveContext.h */,
-				A532C00614CB5A370034A43C /* NSObject+Injective.h */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		A532C00C14CB5C230034A43C /* Private */ = {
-			isa = PBXGroup;
-			children = (
 				A532BFFF14CB580A0034A43C /* InjectiveContext.m */,
 				A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */,
 				A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */,
 				A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */,
 				A5F0CF0014CCABE500B18B11 /* InjectiveCateroryFix.h */,
 			);
-			name = Private;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A5BD8FC214D192C200A7ADBC /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				A532BFFE14CB580A0034A43C /* InjectiveContext.h */,
+				A532C00614CB5A370034A43C /* NSObject+Injective.h */,
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +242,48 @@
 			};
 			name = Release;
 		};
+		A5BD8FC614D1937C00A7ADBC /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PROFILING_CODE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-L/Developer/usr/lib/",
+					"-lprofile_rt",
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Profile;
+		};
+		A5BD8FC714D1937C00A7ADBC /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/Injective.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Profile;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -257,6 +291,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A532C00114CB580A0034A43C /* Debug */,
+				A5BD8FC614D1937C00A7ADBC /* Profile */,
 				A532C00214CB580A0034A43C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -266,6 +301,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A532C00414CB580A0034A43C /* Debug */,
+				A5BD8FC714D1937C00A7ADBC /* Profile */,
 				A532C00514CB580A0034A43C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
