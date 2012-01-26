@@ -26,7 +26,7 @@ Download Injective source code from https://github.com/farcaller/Injective/zipba
 
 Add Injective project to Project navigator (this will create a workspace if you don't have one). To do this, drag *Injective.xcodeproj* from the Finder to the very bottom of your project navigator panel:
 
-![Adding Injective to workspace](http://github.com/farcaller/Injective/raw/master/Docs/add-to-workspace.png)
+![Adding Injective to workspace](http://farcaller.github.com/Injective/add-to-workspace.png)
 
 If you don't have a workspace yet, you will be asked: "Do you want to save this project in a new workspace?". Save it.
 
@@ -34,13 +34,13 @@ If you don't have a workspace yet, you will be asked: "Do you want to save this 
 
 Open your project's build settings and add *Injective/Headers* to **Header Search paths**. If you followed step 0, it's as simple as adding `$(PROJECT_DIR)/Injective/Injective/Headers`:
 
-![Adding header search paths](http://github.com/farcaller/Injective/raw/master/Docs/add-header-search-path.png)
+![Adding header search paths](http://farcaller.github.com/Injective/add-header-search-path.png)
 
 #### (optional) Add Injective as a global header
 
 Add the following line to your project's precompiled header (pch file): `#import "InjectiveContext.h"`:
 
-![Updating precompiled header](http://github.com/farcaller/Injective/raw/master/Docs/add-to-pch.png)
+![Updating precompiled header](http://farcaller.github.com/Injective/add-to-pch.png)
 
 This will allow you to use Injective without requiring you to #import it everywhere.
 
