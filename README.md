@@ -6,11 +6,11 @@ Injective provides facilities for automatic connection of class instances by res
 
 Injective supports factory-like object creation and singleton object creation.
 
-# Setup
+## Setup
 
-## Git version
+### Git version
 
-### (For git users only) Add Injective as a submodule
+#### (For git users only) Add Injective as a submodule
 
 If you're using git as your project's scm, add Injective as a submodue:
 
@@ -18,11 +18,11 @@ If you're using git as your project's scm, add Injective as a submodue:
 git submodule add https://github.com/farcaller/Injective
 ```
 
-### (For all others) Download Injective source
+#### (For all others) Download Injective source
 
 Download Injective source code from https://github.com/farcaller/Injective/zipball/master and unzip it to your project root directory.
 
-### Add Injective project to your workspace
+#### Add Injective project to your workspace
 
 Add Injective project to Project navigator (this will create a workspace if you don't have one). To do this, drag *Injective.xcodeproj* from the Finder to the very bottom of your project navigator panel:
 
@@ -30,13 +30,13 @@ Add Injective project to Project navigator (this will create a workspace if you 
 
 If you don't have a workspace yet, you will be asked: "Do you want to save this project in a new workspace?". Save it.
 
-### Add public headers to search path
+#### Add public headers to search path
 
 Open your project's build settings and add *Injective/Headers* to **Header Search paths**. If you followed step 0, it's as simple as adding `$(PROJECT_DIR)/Injective/Injective/Headers`:
 
 ![Adding header search paths](http://github.com/farcaller/Injective/raw/master/Docs/add-header-search-path.png)
 
-### (optional) Add Injective as a global header
+#### (optional) Add Injective as a global header
 
 Add the following line to your project's precompiled header (pch file): `#import "InjectiveContext.h"`:
 
@@ -44,13 +44,13 @@ Add the following line to your project's precompiled header (pch file): `#import
 
 This will allow you to use Injective without requiring you to #import it everywhere.
 
-## Precompiled version
+### Precompiled version
 
 *TODO*: publish precompiled version
 
-# Usage
+## Usage
 
-## Configuring a default context
+### Configuring a default context
 
 All the helpers require a global context to be set up. You can specify one with:
 
@@ -61,7 +61,7 @@ InjectiveContext *defaultContext = [[InjectiveContext alloc] init];
 
 Where to do that? As soon as you can. You can use `-application:didFinishLaunchingWithOptions:` of the application delegate in the iOS projects.
 
-## Registering a singleton class
+### Registering a singleton class
 
 To register a class you need to use `+registerClass:instantinationMode:` method of *InjectiveContext* class:
 
@@ -90,7 +90,7 @@ injective_register_singleton(MyAPIController)
 @end
 ```
 
-## Registering a common class
+### Registering a common class
 
 You can register a common class using **InjectiveContextInstantinationModeFactory**. This way, Injective will create a new instance of the class each time you instantiate it:
 
@@ -124,7 +124,7 @@ injective_register(MyDetailViewController)
 @end
 ```
 
-## Specifying dependencies
+### Specifying dependencies
 
 To make Injective actually useful, you need to specify a set of properties, that your class requires. You can do this via `+injective_requredProperties` method:
 
@@ -159,7 +159,7 @@ injective_requires(@"apiController")
 @end
 ```
 
-## Instantiation helpers
+### Instantiation helpers
 
 You can instantiate any object in default context using the following class method of NSObject's category:
 
@@ -167,16 +167,16 @@ You can instantiate any object in default context using the following class meth
 MyDetailViewController *viewController = [MyDetailViewController injectiveInstantiate];
 ```
 
-# Licensing
+## Licensing
 
 Injective is a MIT-licensed framework. See details in *LICENSE* file.
 
-# Credits
+## Credits
 
 Injective framework is originally written by Vladimir "Farcaller" Pouzanov <<farcaller@gmail.com>>.
 
 A few ideas are based on Objection framework (https://github.com/atomicobject/objection).
 
-# Bugs / Suggestions
+## Bugs / Suggestions
 
 I'm always open to communication. Please file a ticket via github issues system at https://github.com/farcaller/Injective/issues/new.
