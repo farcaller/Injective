@@ -173,6 +173,9 @@ Injective is a MIT-licensed framework. See details in *LICENSE* file.
 
 ## Credits
 
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=farcaller&url=https://github.com/farcaller/Injective&title=Injective&language=&tags=github&category=software)
+
+
 Injective framework is originally written by Vladimir "Farcaller" Pouzanov <<farcaller@gmail.com>>.
 
 A few ideas are based on Objection framework (https://github.com/atomicobject/objection).
