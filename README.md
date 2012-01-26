@@ -1,8 +1,8 @@
 # Injective framework
 
-The purpose of this framework is to provide a simple dependency injection  framework for iOS/Mac applications.
+The purpose of this framework is to provide a simple dependency injection framework for iOS/Mac applications.
 
-Injective provides facilities for automatic connection of class instances by resolving properties dependencies. Additionally, Injection verifies that all required data is passed to instance for it to function correctly.
+Injective provides facilities for automatic connection of class instances by resolving properties dependencies. Additionally, Injective verifies that all required data is passed to instance for it to function correctly.
 
 Injective supports factory-like object creation and singleton object creation.
 
@@ -50,28 +50,51 @@ This will allow you to use Injective without requiring you to #import it everywh
 
 # Usage
 
+## Configuring a default context
+
+All the helpers require a global context to be set up. You can specify one with:
+
+```objc
+InjectiveContext *defaultContext = [[InjectiveContext alloc] init];
+[InjectiveContext setDefaultContext:defaultContext];
+```
+
+Where to do that? As soon as you can. You can use `-application:didFinishLaunchingWithOptions:` of the application delegate in the iOS projects.
+
 ## Registering a singleton class
 
-To register a class you need to use **+registerClass:instantinationMode:**  method of *InjectiveContext* class:
+To register a class you need to use `+registerClass:instantinationMode:` method of *InjectiveContext* class:
 
 ```objc
 InjectiveContext *myContext = [[InjectiveContext alloc] init];
-[myContext
- registerClass:[MyAPIController class]
- instantinationMode:InjectiveContextInstantinationModeSingleton];
+[myContext registerClass:[MyAPIController class]
+      instantinationMode:InjectiveContextInstantinationModeSingleton];
 ```
 
 Then, you can get an instance of the class with the following code:
 
-```objectivec
-MyAPIController *api = [myContext instantinateClass:[MyAPIController class] withProperties:nil];
+```objc
+MyAPIController *api = [myContext instantinateClass:[MyAPIController class]
+                                     withProperties:nil];
+```
+
+*Note:* You can also use the `injective_register_singleton` macro in your class implementation:
+
+```objc
+@implementation MyAPIController
+
+injective_register_singleton(MyAPIController)
+
+...
+
+@end
 ```
 
 ## Registering a common class
 
-You can register a common class using **InjectiveContextInstantinationModeFactory**. This way, Injection will create a new instance of the class each time you instantiate it:
+You can register a common class using **InjectiveContextInstantinationModeFactory**. This way, Injective will create a new instance of the class each time you instantiate it:
 
-```objectivec
+```objc
 InjectiveContext *myContext = [[InjectiveContext alloc] init];
 [myContext
  registerClass:[MyDetailViewController class]
@@ -89,6 +112,71 @@ MyDetailViewController *viewController = [myContext
                                           withProperties:d];
 ```
 
+*Note:* You can also use the `injective_register` macro in your class implementation:
+
+```objc
+@implementation MyDetailViewController
+
+injective_register(MyDetailViewController)
+
+...
+
+@end
+```
+
 ## Specifying dependencies
 
-*TODO*: write this (see `+ (NSSet *)injective_requredProperties` method).
+To make Injective actually useful, you need to specify a set of properties, that your class requires. You can do this via `+injective_requredProperties` method:
+
+```objc
+@interface MyDetailViewController : UIViewController
+
+@property (nonatomic, strong) MyAPIController *apiController;
+
+@end
+
+
+@implementation MyDetailViewController
+
+injective_register(MyDetailViewController)
+
++ (NSSet *)injective_requredProperties
+{
+    return [NSSet setWithObject:@"apiController"];
+}
+
+@end
+```
+
+There's another handy macro for you – `injective_requires`, that does the same job:
+
+```objc
+@implementation MyDetailViewController
+
+injective_register(MyDetailViewController)
+injective_requires(@"apiController")
+
+@end
+```
+
+## Instantiation helpers
+
+You can instantiate any object in default context using the following class method of NSObject's category:
+
+```objc
+MyDetailViewController *viewController = [MyDetailViewController injectiveInstantiate];
+```
+
+# Licensing
+
+Injective is a MIT-licensed framework. See details in *LICENSE* file.
+
+# Credits
+
+Injective framework is originally written by Vladimir "Farcaller" Pouzanov <farcaller@gmail.com>.
+
+A few ideas are based on Objection framework (https://github.com/atomicobject/objection).
+
+# Bugs / Suggestions
+
+I'm always open to communication. Please file a ticket via github issues system at https://github.com/farcaller/Injective/issues/new.
