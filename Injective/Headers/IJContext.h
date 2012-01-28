@@ -26,16 +26,21 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark Informal protocol for implementing
+
+/** InjectiveProtocol defines helper methods that guide Injective in class instatiation
+ */
 @interface NSObject (InjectiveProtocol)
 
 /** An array of properties, that must be set for object to come alive
  *
- *  The properties are filled in from Injection registered classes and from local context of
- *  +injectionInstantinateWithProperties:
+ *  The properties are filled in from Injective registered classes
  */
 + (NSSet *)injective_requredProperties;
 
 @end
+
+#pragma mark - Helper methods on NSObject
 
 @interface NSObject (Injective)
 
@@ -46,11 +51,26 @@
 
 @end
 
+#pragma mark - IJContext
+
+/** IJContextInstantinationMode defines the instatiation mode.
+ *
+ *  IJContextInstantinationModeFactory   -- create a new instance of class when requested
+ *  IJContextInstantinationModeSingleton -- create an instance when first requested, then
+ *                                          return it. IJContext -retain's all singleton
+ *                                          objects.
+ */
 typedef enum IJContextInstantinationMode {
 	IJContextInstantinationModeFactory,
 	IJContextInstantinationModeSingleton
 } IJContextInstantinationMode;
 
+/** IJContextInstantinationBlock is used in custom initialization cases.
+ *
+ *  If the block of this type is passed to -registerClass:instantinationMode:instantinationBlock:,
+ *  then it's used instead of [[[klass alloc] init] autorelease]. It must return a new instance
+ *  of registering class. You can use the _props_ dictionary for local context.
+ */
 typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 
 @interface IJContext : NSObject
@@ -64,6 +84,10 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 
 @end
 
+#pragma mark - Helper macros
+
+/** injective_register(klass) adds the +initialize method that registers passed class in default context
+ */
 #define injective_register(klass) \
 	+ (void)initialize	\
 	{ \
@@ -72,6 +96,8 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 		} \
 	}
 
+/** injective_register_singleton(klass) adds the +initialize method that registers passed class as a singleton in default context
+ */
 #define injective_register_singleton(klass) \
 	+ (void)initialize	\
 	{ \
@@ -80,6 +106,8 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 		} \
 	}
 
+/** injective_requires adds the +injective_requredProperties method for IJContext
+ */
 #define injective_requires(...) \
 	+ (NSSet *)injective_requredProperties \
 	{ \
