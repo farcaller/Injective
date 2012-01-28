@@ -26,6 +26,11 @@
 		A532C00814CB5A370034A43C /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; };
 		A532C00F14CB5C470034A43C /* InjectiveClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */; };
 		A532C01014CB5C470034A43C /* InjectiveClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */; };
+		A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DADEB14D4437700907553 /* SenTestingKit.framework */; };
+		A54DADEF14D4437700907553 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
+		A54DADF514D4437700907553 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54DADF314D4437700907553 /* InfoPlist.strings */; };
+		A54DADF814D4437700907553 /* InjectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A54DADF714D4437700907553 /* InjectiveTests.m */; };
+		A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DAE0114D44CC600907553 /* libKiwi.a */; };
 		A5BD901114D1996800A7ADBC /* InjectiveContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* InjectiveContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901214D1996A00A7ADBC /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* InjectiveClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
@@ -44,7 +49,15 @@
 		A532C00614CB5A370034A43C /* NSObject+Injective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Injective.h"; sourceTree = "<group>"; };
 		A532C00D14CB5C470034A43C /* InjectiveClassRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InjectiveClassRegistration.h; sourceTree = "<group>"; };
 		A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InjectiveClassRegistration.m; sourceTree = "<group>"; };
-		A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectiveFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54DADEA14D4437700907553 /* InjectiveTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectiveTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54DADEB14D4437700907553 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A54DADF214D4437700907553 /* InjectiveTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InjectiveTests-Info.plist"; sourceTree = "<group>"; };
+		A54DADF414D4437700907553 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A54DADF614D4437700907553 /* InjectiveTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InjectiveTests.h; sourceTree = "<group>"; };
+		A54DADF714D4437700907553 /* InjectiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InjectiveTests.m; sourceTree = "<group>"; };
+		A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InjectiveTests-Prefix.pch"; sourceTree = "<group>"; };
+		A54DAE0114D44CC600907553 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKiwi.a; path = "Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
+		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -54,6 +67,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A54DADE614D4437700907553 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */,
+				A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */,
+				A54DADEF14D4437700907553 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +95,7 @@
 			children = (
 				A532BFFB14CB580A0034A43C /* Injective */,
 				A5BD900214D1962F00A7ADBC /* InjectiveFramework */,
+				A54DADF014D4437700907553 /* InjectiveTests */,
 				A532BFF814CB580A0034A43C /* Frameworks */,
 				A532BFF714CB580A0034A43C /* Products */,
 			);
@@ -81,7 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				A532BFF614CB580A0034A43C /* libInjective.a */,
-				A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */,
+				A5BD8FFF14D1962F00A7ADBC /* Injective.framework */,
+				A54DADEA14D4437700907553 /* InjectiveTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				A532BFF914CB580A0034A43C /* Foundation.framework */,
+				A54DADEB14D4437700907553 /* SenTestingKit.framework */,
+				A54DAE0114D44CC600907553 /* libKiwi.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,6 +148,26 @@
 				A532C00E14CB5C470034A43C /* InjectiveClassRegistration.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		A54DADF014D4437700907553 /* InjectiveTests */ = {
+			isa = PBXGroup;
+			children = (
+				A54DADF614D4437700907553 /* InjectiveTests.h */,
+				A54DADF714D4437700907553 /* InjectiveTests.m */,
+				A54DADF114D4437700907553 /* Supporting Files */,
+			);
+			path = InjectiveTests;
+			sourceTree = "<group>";
+		};
+		A54DADF114D4437700907553 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A54DADF214D4437700907553 /* InjectiveTests-Info.plist */,
+				A54DADF314D4437700907553 /* InfoPlist.strings */,
+				A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		A5BD8FC214D192C200A7ADBC /* Headers */ = {
@@ -181,6 +228,24 @@
 			productReference = A532BFF614CB580A0034A43C /* libInjective.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		A54DADE914D4437700907553 /* InjectiveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A54DADFA14D4437700907553 /* Build configuration list for PBXNativeTarget "InjectiveTests" */;
+			buildPhases = (
+				A54DADE514D4437700907553 /* Sources */,
+				A54DADE614D4437700907553 /* Frameworks */,
+				A54DADE714D4437700907553 /* Resources */,
+				A54DADE814D4437700907553 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InjectiveTests;
+			productName = InjectiveTests;
+			productReference = A54DADEA14D4437700907553 /* InjectiveTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		A5BD8FFE14D1962F00A7ADBC /* InjectiveFramework */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5BD900C14D1962F00A7ADBC /* Build configuration list for PBXNativeTarget "InjectiveFramework" */;
@@ -196,7 +261,7 @@
 			);
 			name = InjectiveFramework;
 			productName = InjectiveFramework;
-			productReference = A5BD8FFF14D1962F00A7ADBC /* InjectiveFramework.framework */;
+			productReference = A5BD8FFF14D1962F00A7ADBC /* Injective.framework */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -223,11 +288,20 @@
 				A532BFF514CB580A0034A43C /* Injective */,
 				A5BD8FFE14D1962F00A7ADBC /* InjectiveFramework */,
 				A5BD901814D19A9800A7ADBC /* Lipo */,
+				A54DADE914D4437700907553 /* InjectiveTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A54DADE714D4437700907553 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54DADF514D4437700907553 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5BD8FFD14D1962F00A7ADBC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,6 +312,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		A54DADE814D4437700907553 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 		A5BD901D14D19A9C00A7ADBC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +351,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A54DADE514D4437700907553 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54DADF814D4437700907553 /* InjectiveTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5BD8FFB14D1962F00A7ADBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,6 +370,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A54DADF314D4437700907553 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A54DADF414D4437700907553 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A532C00114CB580A0034A43C /* Debug */ = {
@@ -297,7 +403,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -315,7 +420,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -327,6 +431,7 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -338,8 +443,69 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A54DADFB14D4437700907553 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
+				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A54DADFC14D4437700907553 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
+				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-L/Developer/usr/lib/",
+					"-lprofile_rt",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Profile;
+		};
+		A54DADFD14D4437700907553 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
+				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -366,7 +532,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PROFILING_CODE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_LDFLAGS = (
 					"-L/Developer/usr/lib/",
 					"-lprofile_rt",
@@ -381,6 +546,7 @@
 				DSTROOT = /tmp/Injective.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Injective/Injective-Prefix.pch";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -392,6 +558,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = mh_object;
 				PRODUCT_NAME = Injective;
 				WRAPPER_EXTENSION = framework;
@@ -405,6 +572,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = mh_object;
 				PRODUCT_NAME = Injective;
 				WRAPPER_EXTENSION = framework;
@@ -419,6 +587,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACH_O_TYPE = mh_object;
 				PRODUCT_NAME = Injective;
 				WRAPPER_EXTENSION = framework;
@@ -469,6 +638,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A54DADFA14D4437700907553 /* Build configuration list for PBXNativeTarget "InjectiveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54DADFB14D4437700907553 /* Debug */,
+				A54DADFC14D4437700907553 /* Profile */,
+				A54DADFD14D4437700907553 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A5BD900C14D1962F00A7ADBC /* Build configuration list for PBXNativeTarget "InjectiveFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -477,6 +655,7 @@
 				A5BD900B14D1962F00A7ADBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5BD901914D19A9800A7ADBC /* Build configuration list for PBXAggregateTarget "Lipo" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +665,7 @@
 				A5BD901C14D19A9800A7ADBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

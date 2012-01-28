@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'InjectiveTests' target in the 'InjectiveTests' project
+//
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+	#import <Foundation/Foundation.h>
+#endif
