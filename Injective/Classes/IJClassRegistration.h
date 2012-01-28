@@ -1,5 +1,5 @@
 //
-//  InjectiveClassRegistration.h
+//  IJClassRegistration.h
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -25,15 +25,15 @@
 //  IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "InjectiveContext.h"
+#import "IJContext.h"
 
-@interface InjectiveClassRegistration : NSObject
+@interface IJClassRegistration : NSObject
 
 @property (nonatomic, readonly) Class klass;
-@property (nonatomic, readonly) InjectiveContextInstantinationMode mode;
-@property (nonatomic, readonly) InjectiveContextInstantinationBlock block;
+@property (nonatomic, readonly) IJContextInstantinationMode mode;
+@property (nonatomic, readonly) IJContextInstantinationBlock block;
 @property (nonatomic, readwrite, retain) NSDictionary *registeredProperties;
 
-+ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
++ (IJClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 
 @end

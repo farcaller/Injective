@@ -1,5 +1,5 @@
 //
-//  InjectiveContext.m
+//  IJContext.m
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -24,25 +24,27 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import "InjectiveContext.h"
-#import "InjectiveClassRegistration.h"
+#import "IJContext.h"
+#import "IJClassRegistration.h"
 #import <objc/runtime.h>
 
-static InjectiveContext *DefaultContext = nil;
+void InjectiveFixTheLdGoingWildPlsPls(void); // XXX: see NSObject+Injective.m
+
+static IJContext *DefaultContext = nil;
 
 
-@interface InjectiveContext ()
+@interface IJContext ()
 
-- (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
+- (id)createClassInstanceFromRegistration:(IJClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
-- (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance;
+- (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance;
 
 @end
 
 
-@implementation InjectiveContext
+@implementation IJContext
 {
 	NSMutableDictionary *_registeredClasses;
 	NSMutableDictionary *_registeredClassesSingletonInstances;
@@ -54,14 +56,14 @@ static InjectiveContext *DefaultContext = nil;
 	InjectiveFixTheLdGoingWildPlsPls();
 }
 
-+ (InjectiveContext *)defaultContext
++ (IJContext *)defaultContext
 {
 	if(DefaultContext == nil)
 		[NSException raise:NSInternalInconsistencyException format:@"Requested default Injective context, when none is available"];
 	return DefaultContext;
 }
 
-+ (void)setDefaultContext:(InjectiveContext *)context
++ (void)setDefaultContext:(IJContext *)context
 {
 	if(DefaultContext != context) {
 		[DefaultContext release];
@@ -88,24 +90,24 @@ static InjectiveContext *DefaultContext = nil;
 	[super dealloc];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode
 {
 	[self registerClass:klass instantinationMode:mode instantinationBlock:nil];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	NSString *klassName = NSStringFromClass(klass);
 	[self registerClass:klass forClassName:klassName instantinationMode:mode instantinationBlock:block];
 }
 
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
 			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
-		[_registeredClasses setObject:[InjectiveClassRegistration registrationWithClass:klass instantinationMode:mode instantinationBlock:block] forKey:klassName];
+		[_registeredClasses setObject:[IJClassRegistration registrationWithClass:klass instantinationMode:mode instantinationBlock:block] forKey:klassName];
 	});
 }
 
@@ -116,7 +118,7 @@ static InjectiveContext *DefaultContext = nil;
 		[self
 		 registerClass:klass
 		 forClassName:klassName
-		 instantinationMode:InjectiveContextInstantinationModeSingleton
+		 instantinationMode:IJContextInstantinationModeSingleton
 		 instantinationBlock:nil];
 		
 		id instance = [_registeredClassesSingletonInstances objectForKey:klassName];
@@ -129,7 +131,7 @@ static InjectiveContext *DefaultContext = nil;
 
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props
 {
-	__block InjectiveClassRegistration *reg = nil;
+	__block IJClassRegistration *reg = nil;
 	__block id instance = nil;
 	NSString *klassName = NSStringFromClass(klass);
 	
@@ -138,7 +140,7 @@ static InjectiveContext *DefaultContext = nil;
 	});
 	
 	if(reg) {
-		if(reg.mode == InjectiveContextInstantinationModeFactory) {
+		if(reg.mode == IJContextInstantinationModeFactory) {
 			instance = [self createClassInstanceFromRegistration:reg withProperties:props];
 		} else {
 			@synchronized(klass) {
@@ -154,7 +156,7 @@ static InjectiveContext *DefaultContext = nil;
 }
 
 #pragma mark -
-- (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance
+- (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance
 {
 	Class klass = reg.klass;
 	if([klass respondsToSelector:@selector(injective_requredProperties)]) {
@@ -202,7 +204,7 @@ static InjectiveContext *DefaultContext = nil;
 	}
 }
 
-- (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props
+- (id)createClassInstanceFromRegistration:(IJClassRegistration *)reg withProperties:(NSDictionary *)props
 {
 	id instance;
 	if(reg.block) {

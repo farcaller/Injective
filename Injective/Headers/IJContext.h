@@ -1,5 +1,5 @@
 //
-//  NSObject+Injective.h
+//  IJContext.h
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -26,8 +26,6 @@
 
 #import <Foundation/Foundation.h>
 
-void InjectiveFixTheLdGoingWildPlsPls();
-
 @interface NSObject (InjectiveProtocol)
 
 /** An array of properties, that must be set for object to come alive
@@ -48,11 +46,29 @@ void InjectiveFixTheLdGoingWildPlsPls();
 
 @end
 
+typedef enum IJContextInstantinationMode {
+	IJContextInstantinationModeFactory,
+	IJContextInstantinationModeSingleton
+} IJContextInstantinationMode;
+
+typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
+
+@interface IJContext : NSObject
+
++ (IJContext *)defaultContext;
++ (void)setDefaultContext:(IJContext *)context;
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode;
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
+- (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
+- (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
+
+@end
+
 #define injective_register(klass) \
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeFactory]; \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
 		} \
 	}
 
@@ -60,7 +76,7 @@ void InjectiveFixTheLdGoingWildPlsPls();
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeSingleton]; \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
 		} \
 	}
 
