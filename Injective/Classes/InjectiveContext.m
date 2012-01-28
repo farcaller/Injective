@@ -55,6 +55,8 @@ static InjectiveContext *DefaultContext = nil;
 
 + (InjectiveContext *)defaultContext
 {
+	if(DefaultContext == nil)
+		[NSException raise:NSInternalInconsistencyException format:@"Requested default Injective context, when none is available"];
 	return DefaultContext;
 }
 
