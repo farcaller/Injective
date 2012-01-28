@@ -25,7 +25,7 @@
 //  IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "InjectiveContext.h"
+#import "IJContext.h"
 
 @interface InjectiveClassRegistration : NSObject
 

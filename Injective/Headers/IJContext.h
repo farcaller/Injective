@@ -1,5 +1,5 @@
 //
-//  InjectiveContext.h
+//  IJContext.h
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -34,10 +34,10 @@ typedef enum IJContextInstantinationMode {
 
 typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 
-@interface InjectiveContext : NSObject
+@interface IJContext : NSObject
 
-+ (InjectiveContext *)defaultContext;
-+ (void)setDefaultContext:(InjectiveContext *)context;
++ (IJContext *)defaultContext;
++ (void)setDefaultContext:(IJContext *)context;
 - (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode;
 - (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;

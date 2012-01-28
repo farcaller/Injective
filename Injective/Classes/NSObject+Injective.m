@@ -25,7 +25,7 @@
 //  IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "InjectiveContext.h"
+#import "IJContext.h"
 
 void InjectiveFixTheLdGoingWildPlsPls()
 {
@@ -36,12 +36,12 @@ void InjectiveFixTheLdGoingWildPlsPls()
 
 + (id)injectiveInstantiateWithProperties:(NSDictionary *)properties
 {
-	return [[InjectiveContext defaultContext] instantinateClass:self withProperties:properties];
+	return [[IJContext defaultContext] instantinateClass:self withProperties:properties];
 }
 
 + (id)injectiveInstantiate
 {
-	return [[InjectiveContext defaultContext] instantinateClass:self withProperties:nil];
+	return [[IJContext defaultContext] instantinateClass:self withProperties:nil];
 }
 
 @end

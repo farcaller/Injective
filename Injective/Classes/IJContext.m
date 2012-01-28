@@ -1,5 +1,5 @@
 //
-//  InjectiveContext.m
+//  IJContext.m
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -24,14 +24,14 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import "InjectiveContext.h"
+#import "IJContext.h"
 #import "InjectiveClassRegistration.h"
 #import <objc/runtime.h>
 
-static InjectiveContext *DefaultContext = nil;
+static IJContext *DefaultContext = nil;
 
 
-@interface InjectiveContext ()
+@interface IJContext ()
 
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
@@ -42,7 +42,7 @@ static InjectiveContext *DefaultContext = nil;
 @end
 
 
-@implementation InjectiveContext
+@implementation IJContext
 {
 	NSMutableDictionary *_registeredClasses;
 	NSMutableDictionary *_registeredClassesSingletonInstances;
@@ -54,14 +54,14 @@ static InjectiveContext *DefaultContext = nil;
 	InjectiveFixTheLdGoingWildPlsPls();
 }
 
-+ (InjectiveContext *)defaultContext
++ (IJContext *)defaultContext
 {
 	if(DefaultContext == nil)
 		[NSException raise:NSInternalInconsistencyException format:@"Requested default Injective context, when none is available"];
 	return DefaultContext;
 }
 
-+ (void)setDefaultContext:(InjectiveContext *)context
++ (void)setDefaultContext:(IJContext *)context
 {
 	if(DefaultContext != context) {
 		[DefaultContext release];
