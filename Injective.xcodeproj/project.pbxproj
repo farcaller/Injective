@@ -28,6 +28,9 @@
 		A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DADEB14D4437700907553 /* SenTestingKit.framework */; };
 		A54DADEF14D4437700907553 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DAE0114D44CC600907553 /* libKiwi.a */; };
+		A5890FFF14D49AAC00187EFD /* ITCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5890FFE14D49AAC00187EFD /* ITCar.m */; };
+		A589100214D49AC500187EFD /* ITBrakes.m in Sources */ = {isa = PBXBuildFile; fileRef = A589100114D49AC500187EFD /* ITBrakes.m */; };
+		A589100514D49AD300187EFD /* ITParking.m in Sources */ = {isa = PBXBuildFile; fileRef = A589100414D49AD300187EFD /* ITParking.m */; };
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
 		A5BD901514D1998200A7ADBC /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
@@ -48,6 +51,12 @@
 		A54DADEB14D4437700907553 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InjectiveTests-Prefix.pch"; sourceTree = "<group>"; };
 		A54DAE0114D44CC600907553 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
+		A5890FFD14D49AAC00187EFD /* ITCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITCar.h; path = Spec/Helpers/ITCar.h; sourceTree = SOURCE_ROOT; };
+		A5890FFE14D49AAC00187EFD /* ITCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITCar.m; path = Spec/Helpers/ITCar.m; sourceTree = SOURCE_ROOT; };
+		A589100014D49AC500187EFD /* ITBrakes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITBrakes.h; path = Spec/Helpers/ITBrakes.h; sourceTree = SOURCE_ROOT; };
+		A589100114D49AC500187EFD /* ITBrakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITBrakes.m; path = Spec/Helpers/ITBrakes.m; sourceTree = SOURCE_ROOT; };
+		A589100314D49AD300187EFD /* ITParking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITParking.h; path = Spec/Helpers/ITParking.h; sourceTree = SOURCE_ROOT; };
+		A589100414D49AD300187EFD /* ITParking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITParking.m; path = Spec/Helpers/ITParking.m; sourceTree = SOURCE_ROOT; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +152,8 @@
 		A54DADF014D4437700907553 /* InjectiveTests */ = {
 			isa = PBXGroup;
 			children = (
+				A5890FFA14D49A0E00187EFD /* Specs */,
+				A5890FFC14D49A1500187EFD /* Helpers */,
 				A54DADF114D4437700907553 /* Supporting Files */,
 			);
 			path = InjectiveTests;
@@ -154,7 +165,28 @@
 				A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			path = ../Spec/Support;
+			path = Spec/Support;
+			sourceTree = "<group>";
+		};
+		A5890FFA14D49A0E00187EFD /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Specs;
+			sourceTree = "<group>";
+		};
+		A5890FFC14D49A1500187EFD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A5890FFD14D49AAC00187EFD /* ITCar.h */,
+				A5890FFE14D49AAC00187EFD /* ITCar.m */,
+				A589100014D49AC500187EFD /* ITBrakes.h */,
+				A589100114D49AC500187EFD /* ITBrakes.m */,
+				A589100314D49AD300187EFD /* ITParking.h */,
+				A589100414D49AD300187EFD /* ITParking.m */,
+			);
+			name = Helpers;
+			path = Spec/Helpers;
 			sourceTree = "<group>";
 		};
 		A5BD8FC214D192C200A7ADBC /* Headers */ = {
@@ -331,6 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5890FFF14D49AAC00187EFD /* ITCar.m in Sources */,
+				A589100214D49AC500187EFD /* ITBrakes.m in Sources */,
+				A589100514D49AD300187EFD /* ITParking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +457,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Spec/Support/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "-all_load";
@@ -440,7 +475,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Spec/Support/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
@@ -462,7 +497,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "Spec/Support/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

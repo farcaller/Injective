@@ -5,4 +5,5 @@
 #ifdef __OBJC__
 	#import <Foundation/Foundation.h>
 	#import "Kiwi.h"
+	#import "IJContext.h"
 #endif
