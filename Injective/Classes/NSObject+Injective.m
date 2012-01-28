@@ -27,7 +27,9 @@
 #import <Foundation/Foundation.h>
 #import "IJContext.h"
 
-void InjectiveFixTheLdGoingWildPlsPls()
+void InjectiveFixTheLdGoingWildPlsPls(void);
+
+void InjectiveFixTheLdGoingWildPlsPls(void)
 {
 	return;
 }

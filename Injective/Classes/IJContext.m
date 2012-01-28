@@ -28,6 +28,8 @@
 #import "IJClassRegistration.h"
 #import <objc/runtime.h>
 
+void InjectiveFixTheLdGoingWildPlsPls(void); // XXX: see NSObject+Injective.m
+
 static IJContext *DefaultContext = nil;
 
 

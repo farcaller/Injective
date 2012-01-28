@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A532C00014CB580A0034A43C /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
-		A532C00814CB5A370034A43C /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; };
 		A532C00F14CB5C470034A43C /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; };
 		A532C01014CB5C470034A43C /* IJClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* IJClassRegistration.m */; };
 		A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DADEB14D4437700907553 /* SenTestingKit.framework */; };
@@ -32,7 +31,6 @@
 		A54DADF814D4437700907553 /* InjectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A54DADF714D4437700907553 /* InjectiveTests.m */; };
 		A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DAE0114D44CC600907553 /* libKiwi.a */; };
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A5BD901214D1996A00A7ADBC /* NSObject+Injective.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00614CB5A370034A43C /* NSObject+Injective.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
 		A5BD901514D1998200A7ADBC /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
 		A5BD901614D1998800A7ADBC /* NSObject+Injective.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */; };
@@ -46,7 +44,6 @@
 		A532BFFD14CB580A0034A43C /* Injective-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Injective-Prefix.pch"; sourceTree = "<group>"; };
 		A532BFFE14CB580A0034A43C /* IJContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IJContext.h; sourceTree = "<group>"; };
 		A532BFFF14CB580A0034A43C /* IJContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IJContext.m; sourceTree = "<group>"; };
-		A532C00614CB5A370034A43C /* NSObject+Injective.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Injective.h"; sourceTree = "<group>"; };
 		A532C00D14CB5C470034A43C /* IJClassRegistration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJClassRegistration.h; sourceTree = "<group>"; };
 		A532C00E14CB5C470034A43C /* IJClassRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJClassRegistration.m; sourceTree = "<group>"; };
 		A54DADEA14D4437700907553 /* InjectiveTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectiveTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				A532BFFE14CB580A0034A43C /* IJContext.h */,
-				A532C00614CB5A370034A43C /* NSObject+Injective.h */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -185,7 +181,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A532C00814CB5A370034A43C /* NSObject+Injective.h in Headers */,
 				A532C00F14CB5C470034A43C /* IJClassRegistration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5BD901114D1996800A7ADBC /* IJContext.h in Headers */,
-				A5BD901214D1996A00A7ADBC /* NSObject+Injective.h in Headers */,
 				A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

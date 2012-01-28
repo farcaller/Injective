@@ -25,7 +25,26 @@
 //  IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "NSObject+Injective.h"
+
+@interface NSObject (InjectiveProtocol)
+
+/** An array of properties, that must be set for object to come alive
+ *
+ *  The properties are filled in from Injection registered classes and from local context of
+ *  +injectionInstantinateWithProperties:
+ */
++ (NSSet *)injective_requredProperties;
+
+@end
+
+@interface NSObject (Injective)
+
+/** Create a new instance of the receiving class or get a singleton
+ */
++ (id)injectiveInstantiateWithProperties:(NSDictionary *)properties;
++ (id)injectiveInstantiate;
+
+@end
 
 typedef enum IJContextInstantinationMode {
 	IJContextInstantinationModeFactory,
@@ -44,3 +63,25 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
 
 @end
+
+#define injective_register(klass) \
+	+ (void)initialize	\
+	{ \
+		if(self == [klass class]) { \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
+		} \
+	}
+
+#define injective_register_singleton(klass) \
+	+ (void)initialize	\
+	{ \
+		if(self == [klass class]) { \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
+		} \
+	}
+
+#define injective_requires(...) \
+	+ (NSSet *)injective_requredProperties \
+	{ \
+		return [NSSet setWithObjects:__VA_ARGS__, nil]; \
+	}
