@@ -1,5 +1,5 @@
 //
-//  InjectiveClassRegistration.m
+//  IJClassRegistration.m
 //  Injective
 //
 //  Created by Vladimir Pouzanov on 1/21/12.
@@ -24,20 +24,20 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import "InjectiveClassRegistration.h"
+#import "IJClassRegistration.h"
 
-@interface InjectiveClassRegistration ()
+@interface IJClassRegistration ()
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
+- (IJClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 
 @end
 
 
-@implementation InjectiveClassRegistration
+@implementation IJClassRegistration
 
 @synthesize klass = _klass, mode = _mode, registeredProperties = _registeredProperties, block = _block;
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
+- (IJClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	if( (self = [super init]) ) {
 		_klass = klass;
@@ -54,7 +54,7 @@
 	[super dealloc];
 }
 
-+ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
++ (IJClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	return [[[self alloc] initWithClass:klass instantinationMode:mode instantinationBlock:block] autorelease];
 }
