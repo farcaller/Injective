@@ -37,6 +37,7 @@ static InjectiveContext *DefaultContext = nil;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
 - (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
+- (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance;
 
 @end
 
@@ -153,17 +154,9 @@ static InjectiveContext *DefaultContext = nil;
 }
 
 #pragma mark -
-- (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props
+- (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance
 {
 	Class klass = reg.klass;
-	id instance;
-	if(reg.block) {
-		instance = reg.block(props);
-	} else {
-		instance = [[[klass alloc] init] autorelease];
-	}
-	
-	// check if the class requires pre-binding setup
 	if([klass respondsToSelector:@selector(injective_requredProperties)]) {
 		__block NSDictionary *registeredProperties;
 		
@@ -194,7 +187,8 @@ static InjectiveContext *DefaultContext = nil;
 			[instance setValue:propInstance forKey:propName];
 		}];
 		
-		// check if we have all the required properties on hand
+#if 0
+#error FIXME we mapped all registeredProperties, need to check only for props, requires additional validation?
 		NSMutableSet *registeredPropsSet = [NSMutableSet setWithArray:[registeredProperties allKeys]];
 		[registeredPropsSet addObjectsFromArray:[props allKeys]];
 		NSMutableSet *requiredPropsSet = [NSMutableSet setWithSet:[klass injective_requredProperties]];
@@ -204,9 +198,22 @@ static InjectiveContext *DefaultContext = nil;
 			[NSException raise:NSInternalInconsistencyException format:@"Class %@ instantinated with %@, but a set of %@ was requested.", NSStringFromClass(klass),
 			 [klass injective_requredProperties], registeredPropsSet];
 		}
+#endif
+	}
+}
+
+- (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props
+{
+	id instance;
+	if(reg.block) {
+		instance = reg.block(props);
+	} else {
+		instance = [[[reg.klass alloc] init] autorelease];
 	}
 	
+	[self bindRegisteredPropertiesWithRegistration:reg toInstance:instance];
 	[instance setValuesForKeysWithDictionary:props];
+	
 	return instance;
 }
 
