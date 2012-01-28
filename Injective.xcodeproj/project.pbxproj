@@ -27,8 +27,6 @@
 		A532C01014CB5C470034A43C /* IJClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* IJClassRegistration.m */; };
 		A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DADEB14D4437700907553 /* SenTestingKit.framework */; };
 		A54DADEF14D4437700907553 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
-		A54DADF514D4437700907553 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A54DADF314D4437700907553 /* InfoPlist.strings */; };
-		A54DADF814D4437700907553 /* InjectiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A54DADF714D4437700907553 /* InjectiveTests.m */; };
 		A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54DAE0114D44CC600907553 /* libKiwi.a */; };
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
@@ -48,10 +46,6 @@
 		A532C00E14CB5C470034A43C /* IJClassRegistration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJClassRegistration.m; sourceTree = "<group>"; };
 		A54DADEA14D4437700907553 /* InjectiveTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InjectiveTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A54DADEB14D4437700907553 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		A54DADF214D4437700907553 /* InjectiveTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InjectiveTests-Info.plist"; sourceTree = "<group>"; };
-		A54DADF414D4437700907553 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A54DADF614D4437700907553 /* InjectiveTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InjectiveTests.h; sourceTree = "<group>"; };
-		A54DADF714D4437700907553 /* InjectiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InjectiveTests.m; sourceTree = "<group>"; };
 		A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InjectiveTests-Prefix.pch"; sourceTree = "<group>"; };
 		A54DAE0114D44CC600907553 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,8 +143,6 @@
 		A54DADF014D4437700907553 /* InjectiveTests */ = {
 			isa = PBXGroup;
 			children = (
-				A54DADF614D4437700907553 /* InjectiveTests.h */,
-				A54DADF714D4437700907553 /* InjectiveTests.m */,
 				A54DADF114D4437700907553 /* Supporting Files */,
 			);
 			path = InjectiveTests;
@@ -159,11 +151,10 @@
 		A54DADF114D4437700907553 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A54DADF214D4437700907553 /* InjectiveTests-Info.plist */,
-				A54DADF314D4437700907553 /* InfoPlist.strings */,
 				A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = ../Spec/Support;
 			sourceTree = "<group>";
 		};
 		A5BD8FC214D192C200A7ADBC /* Headers */ = {
@@ -284,7 +275,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54DADF514D4437700907553 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +331,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A54DADF814D4437700907553 /* InjectiveTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,17 +345,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A54DADF314D4437700907553 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A54DADF414D4437700907553 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A532C00114CB580A0034A43C /* Debug */ = {
@@ -438,7 +416,7 @@
 		A54DADFB14D4437700907553 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -446,7 +424,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
-				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -457,7 +434,7 @@
 		A54DADFC14D4437700907553 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -465,7 +442,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
-				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
 					"-L/Developer/usr/lib/",
@@ -480,7 +456,7 @@
 		A54DADFD14D4437700907553 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -488,7 +464,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InjectiveTests/InjectiveTests-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Kiwi/Kiwi";
-				INFOPLIST_FILE = "InjectiveTests/InjectiveTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
