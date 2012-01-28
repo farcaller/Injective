@@ -2,7 +2,7 @@
 
 @implementation ITCar
 
-@synthesize brakes;
+@synthesize brakes = _brakes, name = _name;
 
 injective_requires(@"brakes")
 

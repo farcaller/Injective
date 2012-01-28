@@ -31,6 +31,8 @@
 		A5890FFF14D49AAC00187EFD /* ITCar.m in Sources */ = {isa = PBXBuildFile; fileRef = A5890FFE14D49AAC00187EFD /* ITCar.m */; };
 		A589100214D49AC500187EFD /* ITBrakes.m in Sources */ = {isa = PBXBuildFile; fileRef = A589100114D49AC500187EFD /* ITBrakes.m */; };
 		A589100514D49AD300187EFD /* ITParking.m in Sources */ = {isa = PBXBuildFile; fileRef = A589100414D49AD300187EFD /* ITParking.m */; };
+		A589100714D49B7100187EFD /* IJContextSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A589100614D49B7100187EFD /* IJContextSpec.m */; };
+		A589100C14D49C7700187EFD /* libInjective.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF614CB580A0034A43C /* libInjective.a */; };
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
 		A5BD901514D1998200A7ADBC /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
@@ -57,6 +59,8 @@
 		A589100114D49AC500187EFD /* ITBrakes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITBrakes.m; path = Spec/Helpers/ITBrakes.m; sourceTree = SOURCE_ROOT; };
 		A589100314D49AD300187EFD /* ITParking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITParking.h; path = Spec/Helpers/ITParking.h; sourceTree = SOURCE_ROOT; };
 		A589100414D49AD300187EFD /* ITParking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITParking.m; path = Spec/Helpers/ITParking.m; sourceTree = SOURCE_ROOT; };
+		A589100614D49B7100187EFD /* IJContextSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IJContextSpec.m; path = Spec/IJContextSpec.m; sourceTree = SOURCE_ROOT; };
+		A589100814D49C0D00187EFD /* ITHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITHelpers.h; path = Spec/Helpers/ITHelpers.h; sourceTree = SOURCE_ROOT; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */,
+				A589100C14D49C7700187EFD /* libInjective.a in Frameworks */,
 				A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */,
 				A54DADEF14D4437700907553 /* Foundation.framework in Frameworks */,
 			);
@@ -171,6 +176,7 @@
 		A5890FFA14D49A0E00187EFD /* Specs */ = {
 			isa = PBXGroup;
 			children = (
+				A589100614D49B7100187EFD /* IJContextSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -184,6 +190,7 @@
 				A589100114D49AC500187EFD /* ITBrakes.m */,
 				A589100314D49AD300187EFD /* ITParking.h */,
 				A589100414D49AD300187EFD /* ITParking.m */,
+				A589100814D49C0D00187EFD /* ITHelpers.h */,
 			);
 			name = Helpers;
 			path = Spec/Helpers;
@@ -366,6 +373,7 @@
 				A5890FFF14D49AAC00187EFD /* ITCar.m in Sources */,
 				A589100214D49AC500187EFD /* ITBrakes.m in Sources */,
 				A589100514D49AD300187EFD /* ITParking.m in Sources */,
+				A589100714D49B7100187EFD /* IJContextSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

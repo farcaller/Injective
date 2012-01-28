@@ -4,6 +4,7 @@
 
 @interface ITCar : NSObject
 
-@property (nonatomic, readonly) ITBrakes *brakes;
+@property (nonatomic, readonly, strong) ITBrakes *brakes;
+@property (nonatomic, readonly, strong) NSString *name;
 
 @end
