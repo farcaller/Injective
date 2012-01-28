@@ -27,10 +27,10 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+Injective.h"
 
-typedef enum InjectiveContextInstantinationMode {
-	InjectiveContextInstantinationModeFactory,
-	InjectiveContextInstantinationModeSingleton
-} InjectiveContextInstantinationMode;
+typedef enum IJContextInstantinationMode {
+	IJContextInstantinationModeFactory,
+	IJContextInstantinationModeSingleton
+} IJContextInstantinationMode;
 
 typedef id(^InjectiveContextInstantinationBlock)(NSDictionary *props);
 
@@ -38,8 +38,8 @@ typedef id(^InjectiveContextInstantinationBlock)(NSDictionary *props);
 
 + (InjectiveContext *)defaultContext;
 + (void)setDefaultContext:(InjectiveContext *)context;
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode;
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode;
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
 

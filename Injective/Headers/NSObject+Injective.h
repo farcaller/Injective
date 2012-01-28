@@ -52,7 +52,7 @@ void InjectiveFixTheLdGoingWildPlsPls();
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeFactory]; \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
 		} \
 	}
 
@@ -60,7 +60,7 @@ void InjectiveFixTheLdGoingWildPlsPls();
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:InjectiveContextInstantinationModeSingleton]; \
+			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
 		} \
 	}
 

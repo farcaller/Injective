@@ -35,7 +35,7 @@ static InjectiveContext *DefaultContext = nil;
 
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
 - (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance;
 
@@ -88,18 +88,18 @@ static InjectiveContext *DefaultContext = nil;
 	[super dealloc];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode
 {
 	[self registerClass:klass instantinationMode:mode instantinationBlock:nil];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
 {
 	NSString *klassName = NSStringFromClass(klass);
 	[self registerClass:klass forClassName:klassName instantinationMode:mode instantinationBlock:block];
 }
 
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(InjectiveContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
 {
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
@@ -116,7 +116,7 @@ static InjectiveContext *DefaultContext = nil;
 		[self
 		 registerClass:klass
 		 forClassName:klassName
-		 instantinationMode:InjectiveContextInstantinationModeSingleton
+		 instantinationMode:IJContextInstantinationModeSingleton
 		 instantinationBlock:nil];
 		
 		id instance = [_registeredClassesSingletonInstances objectForKey:klassName];
@@ -138,7 +138,7 @@ static InjectiveContext *DefaultContext = nil;
 	});
 	
 	if(reg) {
-		if(reg.mode == InjectiveContextInstantinationModeFactory) {
+		if(reg.mode == IJContextInstantinationModeFactory) {
 			instance = [self createClassInstanceFromRegistration:reg withProperties:props];
 		} else {
 			@synchronized(klass) {
