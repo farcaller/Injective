@@ -56,7 +56,7 @@
 		A54DADF614D4437700907553 /* InjectiveTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InjectiveTests.h; sourceTree = "<group>"; };
 		A54DADF714D4437700907553 /* InjectiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InjectiveTests.m; sourceTree = "<group>"; };
 		A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InjectiveTests-Prefix.pch"; sourceTree = "<group>"; };
-		A54DAE0114D44CC600907553 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libKiwi.a; path = "Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
+		A54DAE0114D44CC600907553 /* libKiwi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libKiwi.a; path = "Kiwi/build/Release-iphoneos/libKiwi.a"; sourceTree = "<group>"; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				A532BFFB14CB580A0034A43C /* Injective */,
-				A5BD900214D1962F00A7ADBC /* InjectiveFramework */,
 				A54DADF014D4437700907553 /* InjectiveTests */,
 				A532BFF814CB580A0034A43C /* Frameworks */,
 				A532BFF714CB580A0034A43C /* Products */,
@@ -177,13 +176,6 @@
 				A532C00614CB5A370034A43C /* NSObject+Injective.h */,
 			);
 			path = Headers;
-			sourceTree = "<group>";
-		};
-		A5BD900214D1962F00A7ADBC /* InjectiveFramework */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = InjectiveFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -646,6 +638,7 @@
 				A54DADFD14D4437700907553 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5BD900C14D1962F00A7ADBC /* Build configuration list for PBXNativeTarget "InjectiveFramework" */ = {
 			isa = XCConfigurationList;
