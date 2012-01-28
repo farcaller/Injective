@@ -32,14 +32,14 @@ typedef enum IJContextInstantinationMode {
 	IJContextInstantinationModeSingleton
 } IJContextInstantinationMode;
 
-typedef id(^InjectiveContextInstantinationBlock)(NSDictionary *props);
+typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 
 @interface InjectiveContext : NSObject
 
 + (InjectiveContext *)defaultContext;
 + (void)setDefaultContext:(InjectiveContext *)context;
 - (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode;
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
 

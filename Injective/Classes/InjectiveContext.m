@@ -35,7 +35,7 @@ static InjectiveContext *DefaultContext = nil;
 
 - (id)createClassInstanceFromRegistration:(InjectiveClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
 - (void)bindRegisteredPropertiesWithRegistration:(InjectiveClassRegistration *)reg toInstance:(id)instance;
 
@@ -93,13 +93,13 @@ static InjectiveContext *DefaultContext = nil;
 	[self registerClass:klass instantinationMode:mode instantinationBlock:nil];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	NSString *klassName = NSStringFromClass(klass);
 	[self registerClass:klass forClassName:klassName instantinationMode:mode instantinationBlock:block];
 }
 
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {

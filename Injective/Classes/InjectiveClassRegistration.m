@@ -28,7 +28,7 @@
 
 @interface InjectiveClassRegistration ()
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block;
+- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
 
 @end
 
@@ -37,7 +37,7 @@
 
 @synthesize klass = _klass, mode = _mode, registeredProperties = _registeredProperties, block = _block;
 
-- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
+- (InjectiveClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	if( (self = [super init]) ) {
 		_klass = klass;
@@ -54,7 +54,7 @@
 	[super dealloc];
 }
 
-+ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(InjectiveContextInstantinationBlock)block
++ (InjectiveClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
 {
 	return [[[self alloc] initWithClass:klass instantinationMode:mode instantinationBlock:block] autorelease];
 }
