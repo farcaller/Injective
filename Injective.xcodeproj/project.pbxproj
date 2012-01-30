@@ -36,6 +36,7 @@
 		A594287014D6BE9F003AA7D7 /* IJLocalContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */; };
 		A594287314D6BEAF003AA7D7 /* IJLocalContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A594287214D6BEAF003AA7D7 /* IJLocalContext.h */; };
 		A594287414D6BEB7003AA7D7 /* IJLocalContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A594287214D6BEAF003AA7D7 /* IJLocalContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A594287C14D6C355003AA7D7 /* IJLocalContextSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A594287B14D6C355003AA7D7 /* IJLocalContextSpec.m */; };
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
 		A5BD901514D1998200A7ADBC /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
@@ -66,6 +67,7 @@
 		A589100814D49C0D00187EFD /* ITHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITHelpers.h; path = Spec/Helpers/ITHelpers.h; sourceTree = SOURCE_ROOT; };
 		A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJLocalContext.m; sourceTree = "<group>"; };
 		A594287214D6BEAF003AA7D7 /* IJLocalContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJLocalContext.h; sourceTree = "<group>"; };
+		A594287B14D6C355003AA7D7 /* IJLocalContextSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IJLocalContextSpec.m; path = Spec/IJLocalContextSpec.m; sourceTree = SOURCE_ROOT; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				A589100614D49B7100187EFD /* IJContextSpec.m */,
+				A594287B14D6C355003AA7D7 /* IJLocalContextSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				A589100214D49AC500187EFD /* ITBrakes.m in Sources */,
 				A589100514D49AD300187EFD /* ITParking.m in Sources */,
 				A589100714D49B7100187EFD /* IJContextSpec.m in Sources */,
+				A594287C14D6C355003AA7D7 /* IJLocalContextSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

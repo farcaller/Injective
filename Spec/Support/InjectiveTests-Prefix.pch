@@ -6,5 +6,6 @@
 	#import <Foundation/Foundation.h>
 	#import "Kiwi.h"
 	#import "IJContext.h"
+	#import "IJLocalContext.h"
 	#import "ITHelpers.h"
 #endif

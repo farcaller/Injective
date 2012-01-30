@@ -32,7 +32,7 @@
 
 /** Create a new instance of the receiving class or get a singleton
  */
-+ (id)injectiveInstantiateFromLocalObject:(id)object, ...;
++ (id)injectiveInstantiateFromLocalObjectWithProperties:(id)object, ...;
 + (id)injectiveInstantiateFromLocalObject:(id)object withPropertiesDictionary:(NSDictionary *)properties;
 + (id)injectiveInstantiateFromLocalObject:(id)object;
 
@@ -41,5 +41,7 @@
 #pragma mark - IJLocalContext
 
 @interface IJLocalContext : IJContext
+
++ (id)instantinateClass:(Class)klass localToObject:(id)object withProperties:(NSDictionary *)props;
 
 @end
