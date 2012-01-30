@@ -46,7 +46,8 @@
 
 /** Create a new instance of the receiving class or get a singleton
  */
-+ (id)injectiveInstantiateWithProperties:(NSDictionary *)properties;
++ (id)injectiveInstantiateWithProperties:(id)firstValue, ...;
++ (id)injectiveInstantiateWithPropertiesDictionary:(NSDictionary *)properties;
 + (id)injectiveInstantiate;
 
 @end

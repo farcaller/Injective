@@ -267,7 +267,26 @@ static IJContext *DefaultContext = nil;
 #pragma mark - Injective
 @implementation NSObject (Injective)
 
-+ (id)injectiveInstantiateWithProperties:(NSDictionary *)properties
++ (id)injectiveInstantiateWithProperties:(id)firstValue, ...
+{
+	NSMutableDictionary *d = [NSMutableDictionary dictionary];
+	NSString *key;
+	va_list args;
+	va_start(args, firstValue);
+	
+	id value = firstValue;
+	
+	while(value) {
+		key = va_arg(args, id);
+		[d setObject:value forKey:key];
+		value = va_arg(args, id);
+	};
+	va_end(args);
+	
+	return [[IJContext defaultContext] instantinateClass:self withProperties:d];
+}
+
++ (id)injectiveInstantiateWithPropertiesDictionary:(NSDictionary *)properties
 {
 	return [[IJContext defaultContext] instantinateClass:self withProperties:properties];
 }

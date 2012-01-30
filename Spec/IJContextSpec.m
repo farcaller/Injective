@@ -46,6 +46,18 @@ describe(@"IJContext", ^{
 		[[car.name should] equal:@"test"];
 	});
 	
+	it(@"should create objects from default context using helper methods", ^{
+		[IJContext setDefaultContext:context];
+		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		
+		ITCar *car = [ITCar injectiveInstantiate];
+		[car.brakes shouldNotBeNil];
+		
+		car = [ITCar injectiveInstantiateWithProperties:@"test", @"name", nil];
+		[[car.name should] equal:@"test"];
+	});
+	
 	afterEach(^{
 		[context release];
 	});
