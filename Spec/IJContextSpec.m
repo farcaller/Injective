@@ -30,6 +30,14 @@ describe(@"IJContext", ^{
 		[car.brakes shouldNotBeNil];
 	});
 	
+	pending(@"should provide dependencies for registered classes via ivar", ^{
+		[context registerClass:[ITCarIvar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
+		
+		ITCarIvar *car = [context instantinateClass:[ITCarIvar class] withProperties:nil];
+		[[car brakes] shouldNotBeNil];
+	});
+	
 	it(@"should raise if dependencies are not satisfied", ^{
 		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
 		

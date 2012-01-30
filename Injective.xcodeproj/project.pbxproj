@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		A505007D14D6CBD40070A332 /* IJLocalContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */; };
+		A505008514D72BF50070A332 /* ITCarIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = A505008414D72BF50070A332 /* ITCarIvar.m */; };
 		A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A532C00014CB580A0034A43C /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
 		A532C00F14CB5C470034A43C /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A505008314D72BF50070A332 /* ITCarIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITCarIvar.h; path = Spec/Helpers/ITCarIvar.h; sourceTree = SOURCE_ROOT; };
+		A505008414D72BF50070A332 /* ITCarIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITCarIvar.m; path = Spec/Helpers/ITCarIvar.m; sourceTree = SOURCE_ROOT; };
 		A532BFF614CB580A0034A43C /* libInjective.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInjective.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A532BFF914CB580A0034A43C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A532BFFD14CB580A0034A43C /* Injective-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Injective-Prefix.pch"; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				A589100114D49AC500187EFD /* ITBrakes.m */,
 				A589100314D49AD300187EFD /* ITParking.h */,
 				A589100414D49AD300187EFD /* ITParking.m */,
+				A505008314D72BF50070A332 /* ITCarIvar.h */,
+				A505008414D72BF50070A332 /* ITCarIvar.m */,
 				A589100814D49C0D00187EFD /* ITHelpers.h */,
 			);
 			name = Helpers;
@@ -384,6 +389,7 @@
 				A589100514D49AD300187EFD /* ITParking.m in Sources */,
 				A589100714D49B7100187EFD /* IJContextSpec.m in Sources */,
 				A594287C14D6C355003AA7D7 /* IJLocalContextSpec.m in Sources */,
+				A505008514D72BF50070A332 /* ITCarIvar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
