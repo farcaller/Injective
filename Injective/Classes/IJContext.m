@@ -28,8 +28,6 @@
 #import "IJClassRegistration.h"
 #import <objc/runtime.h>
 
-void InjectiveFixTheLdGoingWildPlsPls(void); // XXX: see NSObject+Injective.m
-
 static IJContext *DefaultContext = nil;
 
 
@@ -49,11 +47,6 @@ static IJContext *DefaultContext = nil;
 	NSMutableDictionary *_registeredClasses;
 	NSMutableDictionary *_registeredClassesSingletonInstances;
 	dispatch_queue_t _queue;
-}
-
-+ (void)initialize
-{
-	InjectiveFixTheLdGoingWildPlsPls();
 }
 
 + (IJContext *)defaultContext
@@ -267,6 +260,21 @@ static IJContext *DefaultContext = nil;
 		[ms unionSet:[self gatherPropertiesForKlass:superKlass]];
 	}
 	return ms;
+}
+
+@end
+
+#pragma mark - Injective
+@implementation NSObject (Injective)
+
++ (id)injectiveInstantiateWithProperties:(NSDictionary *)properties
+{
+	return [[IJContext defaultContext] instantinateClass:self withProperties:properties];
+}
+
++ (id)injectiveInstantiate
+{
+	return [[IJContext defaultContext] instantinateClass:self withProperties:nil];
 }
 
 @end

@@ -40,9 +40,7 @@
 		A5BD901114D1996800A7ADBC /* IJContext.h in Headers */ = {isa = PBXBuildFile; fileRef = A532BFFE14CB580A0034A43C /* IJContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A5BD901314D1996D00A7ADBC /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; settings = {ATTRIBUTES = (); }; };
 		A5BD901514D1998200A7ADBC /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
-		A5BD901614D1998800A7ADBC /* NSObject+Injective.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */; };
 		A5BD901714D1998800A7ADBC /* IJClassRegistration.m in Sources */ = {isa = PBXBuildFile; fileRef = A532C00E14CB5C470034A43C /* IJClassRegistration.m */; };
-		A5F0CED914CC6D4A00B18B11 /* NSObject+Injective.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +67,6 @@
 		A594287214D6BEAF003AA7D7 /* IJLocalContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJLocalContext.h; sourceTree = "<group>"; };
 		A594287B14D6C355003AA7D7 /* IJLocalContextSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IJLocalContextSpec.m; path = Spec/IJLocalContextSpec.m; sourceTree = SOURCE_ROOT; };
 		A5BD8FFF14D1962F00A7ADBC /* Injective.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Injective.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Injective.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +152,6 @@
 			children = (
 				A532BFFF14CB580A0034A43C /* IJContext.m */,
 				A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */,
-				A5F0CED814CC6D4A00B18B11 /* NSObject+Injective.m */,
 				A532C00D14CB5C470034A43C /* IJClassRegistration.h */,
 				A532C00E14CB5C470034A43C /* IJClassRegistration.m */,
 			);
@@ -374,7 +370,6 @@
 			files = (
 				A532C00014CB580A0034A43C /* IJContext.m in Sources */,
 				A532C01014CB5C470034A43C /* IJClassRegistration.m in Sources */,
-				A5F0CED914CC6D4A00B18B11 /* NSObject+Injective.m in Sources */,
 				A594287014D6BE9F003AA7D7 /* IJLocalContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5BD901614D1998800A7ADBC /* NSObject+Injective.m in Sources */,
 				A5BD901714D1998800A7ADBC /* IJClassRegistration.m in Sources */,
 				A5BD901514D1998200A7ADBC /* IJContext.m in Sources */,
 			);
