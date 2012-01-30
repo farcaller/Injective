@@ -122,7 +122,7 @@ static IJContext *DefaultContext = nil;
 	}
 }
 
-- (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props
+- (id)instantiateClass:(Class)klass withProperties:(NSDictionary *)props
 {
 	__block IJClassRegistration *reg = nil;
 	__block id instance = nil;
@@ -175,7 +175,7 @@ static IJContext *DefaultContext = nil;
 			} else {
 				[propKlass class];
 			}
-			id propInstance = [self instantinateClass:propKlass withProperties:nil];
+			id propInstance = [self instantiateClass:propKlass withProperties:nil];
 			if(!propInstance) {
 				[NSException raise:NSInternalInconsistencyException format:@"Injector %@ doesn't know how to instantinate %@", self, propKlassName];
 			}
@@ -287,17 +287,17 @@ static IJContext *DefaultContext = nil;
 	};
 	va_end(args);
 	
-	return [[IJContext defaultContext] instantinateClass:self withProperties:d];
+	return [[IJContext defaultContext] instantiateClass:self withProperties:d];
 }
 
 + (id)injectiveInstantiateWithPropertiesDictionary:(NSDictionary *)properties
 {
-	return [[IJContext defaultContext] instantinateClass:self withProperties:properties];
+	return [[IJContext defaultContext] instantiateClass:self withProperties:properties];
 }
 
 + (id)injectiveInstantiate
 {
-	return [[IJContext defaultContext] instantinateClass:self withProperties:nil];
+	return [[IJContext defaultContext] instantiateClass:self withProperties:nil];
 }
 
 @end

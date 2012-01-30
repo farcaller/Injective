@@ -81,7 +81,7 @@ typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode;
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
-- (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
+- (id)instantiateClass:(Class)klass withProperties:(NSDictionary *)props;
 
 @end
 

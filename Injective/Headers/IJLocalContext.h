@@ -42,6 +42,6 @@
 
 @interface IJLocalContext : IJContext
 
-+ (id)instantinateClass:(Class)klass localToObject:(id)object withProperties:(NSDictionary *)props;
++ (id)instantiateClass:(Class)klass localToObject:(id)object withProperties:(NSDictionary *)props;
 
 @end

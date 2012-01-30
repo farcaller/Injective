@@ -12,7 +12,7 @@ describe(@"IJLocalContext", ^{
 		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
-		ITCar *car = [context instantinateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
+		ITCar *car = [context instantiateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
 		[[car.name should] equal:@"test"];
 	});
 	
@@ -21,7 +21,7 @@ describe(@"IJLocalContext", ^{
 		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
-		ITParking *parking = [context instantinateClass:[ITParking class] withProperties:nil];
+		ITParking *parking = [context instantiateClass:[ITParking class] withProperties:nil];
 		ITCar *car = [parking localCar];
 		[car shouldNotBeNil];
 		[car.name shouldBeNil];

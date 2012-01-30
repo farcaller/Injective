@@ -10,15 +10,15 @@ describe(@"IJContext", ^{
 	
 	it(@"should create different instances if set to factory", ^{
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
-		ITBrakes *obj1 = [context instantinateClass:[ITBrakes class] withProperties:nil];
-		ITBrakes *obj2 = [context instantinateClass:[ITBrakes class] withProperties:nil];
+		ITBrakes *obj1 = [context instantiateClass:[ITBrakes class] withProperties:nil];
+		ITBrakes *obj2 = [context instantiateClass:[ITBrakes class] withProperties:nil];
 		[[obj1 shouldNot] beIdenticalTo:obj2];
 	});
 	
 	it(@"should create same instances if set to singleton", ^{
 		[context registerClass:[ITParking class] instantiationMode:IJContextInstantiationModeSingleton];
-		ITParking *obj1 = [context instantinateClass:[ITParking class] withProperties:nil];
-		ITParking *obj2 = [context instantinateClass:[ITParking class] withProperties:nil];
+		ITParking *obj1 = [context instantiateClass:[ITParking class] withProperties:nil];
+		ITParking *obj2 = [context instantiateClass:[ITParking class] withProperties:nil];
 		[[obj1 should] beIdenticalTo:obj2];
 	});
 	
@@ -26,7 +26,7 @@ describe(@"IJContext", ^{
 		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
-		ITCar *car = [context instantinateClass:[ITCar class] withProperties:nil];
+		ITCar *car = [context instantiateClass:[ITCar class] withProperties:nil];
 		[car.brakes shouldNotBeNil];
 	});
 	
@@ -34,7 +34,7 @@ describe(@"IJContext", ^{
 		[context registerClass:[ITCarIvar class] instantiationMode:IJContextInstantiationModeFactory];
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
-		ITCarIvar *car = [context instantinateClass:[ITCarIvar class] withProperties:nil];
+		ITCarIvar *car = [context instantiateClass:[ITCarIvar class] withProperties:nil];
 		[[car brakes] shouldNotBeNil];
 	});
 	
@@ -42,7 +42,7 @@ describe(@"IJContext", ^{
 		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		[[theBlock(^{
-			[context instantinateClass:[ITCar class] withProperties:nil];
+			[context instantiateClass:[ITCar class] withProperties:nil];
 		}) should] raiseWithName:NSInternalInconsistencyException];
 	});
 	
@@ -50,7 +50,7 @@ describe(@"IJContext", ^{
 		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
-		ITCar *car = [context instantinateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
+		ITCar *car = [context instantiateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
 		[[car.name should] equal:@"test"];
 	});
 	

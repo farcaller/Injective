@@ -48,9 +48,9 @@ static char IJLocalContextToken;
 	return localContext;
 }
 
-+ (id)instantinateClass:(Class)klass localToObject:(id)object withProperties:(NSDictionary *)props
++ (id)instantiateClass:(Class)klass localToObject:(id)object withProperties:(NSDictionary *)props
 {
-	return [[self localContextOfObject:object] instantinateClass:klass withProperties:props];
+	return [[self localContextOfObject:object] instantiateClass:klass withProperties:props];
 }
 
 #pragma mark -
@@ -96,17 +96,17 @@ static char IJLocalContextToken;
 	};
 	va_end(args);
 	
-	return [IJLocalContext instantinateClass:self localToObject:object withProperties:d];
+	return [IJLocalContext instantiateClass:self localToObject:object withProperties:d];
 }
 
 + (id)injectiveInstantiateFromLocalObject:(id)object withPropertiesDictionary:(NSDictionary *)properties
 {
-	return [IJLocalContext instantinateClass:self localToObject:object withProperties:properties];
+	return [IJLocalContext instantiateClass:self localToObject:object withProperties:properties];
 }
 
 + (id)injectiveInstantiateFromLocalObject:(id)object
 {
-	return [IJLocalContext instantinateClass:self localToObject:object withProperties:nil];
+	return [IJLocalContext instantiateClass:self localToObject:object withProperties:nil];
 }
 
 @end
