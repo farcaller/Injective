@@ -35,7 +35,7 @@ static IJContext *DefaultContext = nil;
 
 - (id)createClassInstanceFromRegistration:(IJClassRegistration *)reg withProperties:(NSDictionary *)props;
 - (NSDictionary *)createPropertiesMapForClass:(Class)klass;
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
 - (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance;
 
@@ -83,24 +83,24 @@ static IJContext *DefaultContext = nil;
 	[super dealloc];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode
+- (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode
 {
-	[self registerClass:klass instantinationMode:mode instantinationBlock:nil];
+	[self registerClass:klass instantiationMode:mode instantiationBlock:nil];
 }
 
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
+- (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block
 {
 	NSString *klassName = NSStringFromClass(klass);
-	[self registerClass:klass forClassName:klassName instantinationMode:mode instantinationBlock:block];
+	[self registerClass:klass forClassName:klassName instantiationMode:mode instantiationBlock:block];
 }
 
-- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
+- (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block
 {
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
 			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
-		[_registeredClasses setObject:[IJClassRegistration registrationWithClass:klass instantinationMode:mode instantinationBlock:block] forKey:klassName];
+		[_registeredClasses setObject:[IJClassRegistration registrationWithClass:klass instantiationMode:mode instantiationBlock:block] forKey:klassName];
 	});
 }
 
@@ -111,8 +111,8 @@ static IJContext *DefaultContext = nil;
 		[self
 		 registerClass:klass
 		 forClassName:klassName
-		 instantinationMode:IJContextInstantinationModeSingleton
-		 instantinationBlock:nil];
+		 instantiationMode:IJContextInstantiationModeSingleton
+		 instantiationBlock:nil];
 		
 		id instance = [_registeredClassesSingletonInstances objectForKey:klassName];
 		if(instance) {
@@ -133,7 +133,7 @@ static IJContext *DefaultContext = nil;
 	});
 	
 	if(reg) {
-		if(reg.mode == IJContextInstantinationModeFactory) {
+		if(reg.mode == IJContextInstantiationModeFactory) {
 			instance = [self createClassInstanceFromRegistration:reg withProperties:props];
 		} else {
 			@synchronized(klass) {
@@ -219,6 +219,10 @@ static IJContext *DefaultContext = nil;
 	
 	for(NSString *propName in requiredProperties) {
 		objc_property_t property = class_getProperty(klass, [propName cStringUsingEncoding:NSASCIIStringEncoding]);
+		if(property == nil) {
+			[NSException raise:NSInternalInconsistencyException format:@"Cannot map required property '%@' of class %@ as there's no such property",
+			 propName, NSStringFromClass(klass)];
+		}
 		const char *cPropAttrib = property_getAttributes(property);
 		// the attributes string is always at least 2 chars long, and the 2nd char must be @ for us to proceed
 		if(cPropAttrib[1] != '@') {

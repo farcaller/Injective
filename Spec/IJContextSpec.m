@@ -9,22 +9,22 @@ describe(@"IJContext", ^{
 	});
 	
 	it(@"should create different instances if set to factory", ^{
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		ITBrakes *obj1 = [context instantinateClass:[ITBrakes class] withProperties:nil];
 		ITBrakes *obj2 = [context instantinateClass:[ITBrakes class] withProperties:nil];
 		[[obj1 shouldNot] beIdenticalTo:obj2];
 	});
 	
 	it(@"should create same instances if set to singleton", ^{
-		[context registerClass:[ITParking class] instantinationMode:IJContextInstantinationModeSingleton];
+		[context registerClass:[ITParking class] instantiationMode:IJContextInstantiationModeSingleton];
 		ITParking *obj1 = [context instantinateClass:[ITParking class] withProperties:nil];
 		ITParking *obj2 = [context instantinateClass:[ITParking class] withProperties:nil];
 		[[obj1 should] beIdenticalTo:obj2];
 	});
 	
-	it(@"should provide dependencies for registered classes", ^{
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+	it(@"should provide dependencies for registered classes via property", ^{
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		ITCar *car = [context instantinateClass:[ITCar class] withProperties:nil];
 		[car.brakes shouldNotBeNil];
@@ -39,7 +39,7 @@ describe(@"IJContext", ^{
 	});
 	
 	it(@"should raise if dependencies are not satisfied", ^{
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		[[theBlock(^{
 			[context instantinateClass:[ITCar class] withProperties:nil];
@@ -47,8 +47,8 @@ describe(@"IJContext", ^{
 	});
 	
 	it(@"should provide values for additional passed params", ^{
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		ITCar *car = [context instantinateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
 		[[car.name should] equal:@"test"];
@@ -56,8 +56,8 @@ describe(@"IJContext", ^{
 	
 	it(@"should create objects from default context using helper methods", ^{
 		[IJContext setDefaultContext:context];
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		ITCar *car = [ITCar injectiveInstantiate];
 		[car.brakes shouldNotBeNil];

@@ -54,32 +54,32 @@
 
 #pragma mark - IJContext
 
-/** IJContextInstantinationMode defines the instatiation mode.
+/** IJContextInstantiationMode defines the instatiation mode.
  *
- *  IJContextInstantinationModeFactory   -- create a new instance of class when requested
- *  IJContextInstantinationModeSingleton -- create an instance when first requested, then
+ *  IJContextInstantiationModeFactory   -- create a new instance of class when requested
+ *  IJContextInstantiationModeSingleton -- create an instance when first requested, then
  *                                          return it. IJContext -retain's all singleton
  *                                          objects.
  */
-typedef enum IJContextInstantinationMode {
-	IJContextInstantinationModeFactory,
-	IJContextInstantinationModeSingleton
-} IJContextInstantinationMode;
+typedef enum IJContextInstantiationMode {
+	IJContextInstantiationModeFactory,
+	IJContextInstantiationModeSingleton
+} IJContextInstantiationMode;
 
-/** IJContextInstantinationBlock is used in custom initialization cases.
+/** IJContextInstantiationBlock is used in custom initialization cases.
  *
- *  If the block of this type is passed to -registerClass:instantinationMode:instantinationBlock:,
+ *  If the block of this type is passed to -registerClass:instantiationMode:instantiationBlock:,
  *  then it's used instead of [[[klass alloc] init] autorelease]. It must return a new instance
  *  of registering class. You can use the _props_ dictionary for local context.
  */
-typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
+typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 
 @interface IJContext : NSObject
 
 + (IJContext *)defaultContext;
 + (void)setDefaultContext:(IJContext *)context;
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode;
-- (void)registerClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
+- (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode;
+- (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
 - (id)instantinateClass:(Class)klass withProperties:(NSDictionary *)props;
 
@@ -93,7 +93,7 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[IJContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
+			[[IJContext defaultContext] registerClass:[klass class] instantiationMode:IJContextInstantiationModeFactory]; \
 		} \
 	}
 
@@ -103,7 +103,7 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[IJContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
+			[[IJContext defaultContext] registerClass:[klass class] instantiationMode:IJContextInstantiationModeSingleton]; \
 		} \
 	}
 

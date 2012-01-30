@@ -28,7 +28,7 @@
 
 @interface IJClassRegistration ()
 
-- (IJClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
+- (IJClassRegistration *)initWithClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 
 @end
 
@@ -37,7 +37,7 @@
 
 @synthesize klass = _klass, mode = _mode, registeredProperties = _registeredProperties, block = _block;
 
-- (IJClassRegistration *)initWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
+- (IJClassRegistration *)initWithClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block
 {
 	if( (self = [super init]) ) {
 		_klass = klass;
@@ -54,9 +54,9 @@
 	[super dealloc];
 }
 
-+ (IJClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block
++ (IJClassRegistration *)registrationWithClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block
 {
-	return [[[self alloc] initWithClass:klass instantinationMode:mode instantinationBlock:block] autorelease];
+	return [[[self alloc] initWithClass:klass instantiationMode:mode instantiationBlock:block] autorelease];
 }
 
 - (NSString *)description

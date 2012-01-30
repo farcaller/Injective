@@ -30,10 +30,10 @@
 @interface IJClassRegistration : NSObject
 
 @property (nonatomic, readonly) Class klass;
-@property (nonatomic, readonly) IJContextInstantinationMode mode;
-@property (nonatomic, readonly) IJContextInstantinationBlock block;
+@property (nonatomic, readonly) IJContextInstantiationMode mode;
+@property (nonatomic, readonly) IJContextInstantiationBlock block;
 @property (nonatomic, readwrite, retain) NSDictionary *registeredProperties;
 
-+ (IJClassRegistration *)registrationWithClass:(Class)klass instantinationMode:(IJContextInstantinationMode)mode instantinationBlock:(IJContextInstantinationBlock)block;
++ (IJClassRegistration *)registrationWithClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 
 @end

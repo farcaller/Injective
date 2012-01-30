@@ -9,17 +9,17 @@ describe(@"IJLocalContext", ^{
 	});
 	
 	it(@"should provide values for additional passed params", ^{
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		ITCar *car = [context instantinateClass:[ITCar class] withProperties:[NSDictionary dictionaryWithObject:@"test" forKey:@"name"]];
 		[[car.name should] equal:@"test"];
 	});
 	
 	it(@"should allow passing of local context to dependent objects", ^{
-		[context registerClass:[ITParking class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITCar class] instantinationMode:IJContextInstantinationModeFactory];
-		[context registerClass:[ITBrakes class] instantinationMode:IJContextInstantinationModeFactory];
+		[context registerClass:[ITParking class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
 		
 		ITParking *parking = [context instantinateClass:[ITParking class] withProperties:nil];
 		ITCar *car = [parking localCar];
