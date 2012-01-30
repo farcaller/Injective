@@ -152,7 +152,7 @@ static IJContext *DefaultContext = nil;
 - (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance
 {
 	Class klass = reg.klass;
-	if([klass respondsToSelector:@selector(injective_requredProperties)]) {
+	if([klass respondsToSelector:@selector(injective_requiredProperties)]) {
 		__block NSDictionary *registeredProperties;
 		
 		// check if there is known property-class map and generate one if required
@@ -186,12 +186,12 @@ static IJContext *DefaultContext = nil;
 #error FIXME we mapped all registeredProperties, need to check only for props, requires additional validation?
 		NSMutableSet *registeredPropsSet = [NSMutableSet setWithArray:[registeredProperties allKeys]];
 		[registeredPropsSet addObjectsFromArray:[props allKeys]];
-		NSMutableSet *requiredPropsSet = [NSMutableSet setWithSet:[klass injective_requredProperties]];
+		NSMutableSet *requiredPropsSet = [NSMutableSet setWithSet:[klass injective_requiredProperties]];
 		[requiredPropsSet minusSet:registeredPropsSet];
 		BOOL hasMissingProperties = [requiredPropsSet count] > 0;
 		if(hasMissingProperties) {
 			[NSException raise:NSInternalInconsistencyException format:@"Class %@ instantinated with %@, but a set of %@ was requested.", NSStringFromClass(klass),
-			 [klass injective_requredProperties], registeredPropsSet];
+			 [klass injective_requiredProperties], registeredPropsSet];
 		}
 #endif
 	}
@@ -258,9 +258,9 @@ static IJContext *DefaultContext = nil;
 
 - (NSSet *)gatherPropertiesForKlass:(Class)klass
 {
-	NSMutableSet *ms = [NSMutableSet setWithSet:[klass injective_requredProperties]];
+	NSMutableSet *ms = [NSMutableSet setWithSet:[klass injective_requiredProperties]];
 	Class superKlass = class_getSuperclass(klass);
-	if([superKlass respondsToSelector:@selector(injective_requredProperties)]) {
+	if([superKlass respondsToSelector:@selector(injective_requiredProperties)]) {
 		[ms unionSet:[self gatherPropertiesForKlass:superKlass]];
 	}
 	return ms;

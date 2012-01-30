@@ -36,7 +36,7 @@
  *
  *  The properties are filled in from Injective registered classes
  */
-+ (NSSet *)injective_requredProperties;
++ (NSSet *)injective_requiredProperties;
 
 @end
 
@@ -107,10 +107,10 @@ typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 		} \
 	}
 
-/** injective_requires adds the +injective_requredProperties method for IJContext
+/** injective_requires adds the +injective_requiredProperties method for IJContext
  */
 #define injective_requires(...) \
-	+ (NSSet *)injective_requredProperties \
+	+ (NSSet *)injective_requiredProperties \
 	{ \
 		return [NSSet setWithObjects:__VA_ARGS__, nil]; \
 	}
