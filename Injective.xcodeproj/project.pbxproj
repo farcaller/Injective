@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		A505007D14D6CBD40070A332 /* IJLocalContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */; };
 		A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A532C00014CB580A0034A43C /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
 		A532C00F14CB5C470034A43C /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; };
@@ -392,6 +393,7 @@
 			files = (
 				A5BD901714D1998800A7ADBC /* IJClassRegistration.m in Sources */,
 				A5BD901514D1998200A7ADBC /* IJContext.m in Sources */,
+				A505007D14D6CBD40070A332 /* IJLocalContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
