@@ -93,7 +93,7 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
+			[[IJContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeFactory]; \
 		} \
 	}
 
@@ -103,7 +103,7 @@ typedef id(^IJContextInstantinationBlock)(NSDictionary *props);
 	+ (void)initialize	\
 	{ \
 		if(self == [klass class]) { \
-			[[InjectiveContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
+			[[IJContext defaultContext] registerClass:[klass class] instantinationMode:IJContextInstantinationModeSingleton]; \
 		} \
 	}
 
