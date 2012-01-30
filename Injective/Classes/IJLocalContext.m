@@ -78,6 +78,8 @@ static char IJLocalContextToken;
 #pragma mark - InjectiveLocal
 @implementation NSObject (InjectiveLocal)
 
+// TODO: should this fallback to [IJContext defaultContext] if +[IJLocalContext localContextOfObject:object] fails?
+
 + (id)injectiveInstantiateFromLocalObjectWithProperties:(id)object, ...
 {
 	NSMutableDictionary *d = [NSMutableDictionary dictionary];
