@@ -78,10 +78,20 @@ typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 
 + (IJContext *)defaultContext;
 + (void)setDefaultContext:(IJContext *)context;
+
+/// Generic class registration methods
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode;
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
+
+/// Singleton registration from existing instance
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass;
+
+/// Generic instantiation interface
 - (id)instantiateClass:(Class)klass withProperties:(NSDictionary *)props;
+
+/// Protocol instantiation interfaces
+- (id)instantiateClassImplementingProtocol:(Protocol *)proto withProperties:(NSDictionary *)props;
+- (NSArray *)instantiateAllClassesImplementingProtocol:(Protocol *)proto withProperties:(NSDictionary *)props;
 
 @end
 

@@ -38,12 +38,15 @@ static IJContext *DefaultContext = nil;
 - (void)registerClass:(Class)klass forClassName:(NSString *)klassName instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;
 - (NSSet *)gatherPropertiesForKlass:(Class)klass;
 - (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance;
+- (void)registerProtocolsForClass:(Class)klass;
+- (void)registerProtocolNamed:(NSString *)name forClass:(Class)klass;
 
 @end
 
 
 @implementation IJContext
 {
+	NSMutableDictionary *_registeredProtocols;
 	NSMutableDictionary *_registeredClasses;
 	NSMutableDictionary *_registeredClassesSingletonInstances;
 	dispatch_queue_t _queue;
@@ -67,6 +70,7 @@ static IJContext *DefaultContext = nil;
 - (id)init
 {
     if( (self = [super init]) ) {
+		_registeredProtocols = [[NSMutableDictionary alloc] init];
 		_registeredClasses = [[NSMutableDictionary alloc] init];
 		_registeredClassesSingletonInstances = [[NSMutableDictionary alloc] init];
 		NSString *queueName = [NSString stringWithFormat:@"net.farcaller.injective.%p.main", self];
@@ -100,8 +104,34 @@ static IJContext *DefaultContext = nil;
 		if([_registeredClasses objectForKey:klassName]) {
 			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
-		[_registeredClasses setObject:[IJClassRegistration registrationWithClass:klass instantiationMode:mode instantiationBlock:block] forKey:klassName];
+		IJClassRegistration *reg = [IJClassRegistration registrationWithClass:klass instantiationMode:mode instantiationBlock:block];
+		[_registeredClasses setObject:reg forKey:klassName];
+		[self registerProtocolsForClass:klass];
 	});
+}
+
+- (void)registerProtocolsForClass:(Class)klass
+{
+	unsigned int protocolCount = 0;
+	Protocol **protocolList = class_copyProtocolList(klass, &protocolCount);
+	
+	for(unsigned int i = 0; i < protocolCount; ++i) {
+		Protocol *p = protocolList[i];
+		NSString *pname = NSStringFromProtocol(p);
+		[self registerProtocolNamed:pname forClass:klass];
+	}
+	
+	free(protocolList);
+}
+
+- (void)registerProtocolNamed:(NSString *)name forClass:(Class)klass
+{
+	NSMutableArray *registrations = [_registeredProtocols objectForKey:name];
+	if(!registrations) {
+		registrations = [NSMutableArray array];
+		[_registeredProtocols setObject:registrations forKey:name];
+	}
+	[registrations addObject:NSStringFromClass(klass)];
 }
 
 - (void)registerSingletonInstance:(id)obj forClass:(Class)klass
@@ -148,6 +178,48 @@ static IJContext *DefaultContext = nil;
 	return instance;
 }
 
+- (id)instantiateClassImplementingProtocol:(Protocol *)proto withProperties:(NSDictionary *)props
+{
+	__block NSArray *registrations = nil;
+	NSString *pname = NSStringFromProtocol(proto);
+	
+	dispatch_sync(_queue, ^{
+		registrations = [[_registeredProtocols objectForKey:pname] copy];
+	});
+	
+	if([registrations count] == 1) {
+		Class klass = NSClassFromString([registrations objectAtIndex:0]);
+		return [self instantiateClass:klass withProperties:props];
+	} else if([registrations count] == 0) {
+		return nil;
+	} else {
+		[NSException raise:NSInternalInconsistencyException format:@"Protocol %@ has several registered implementations in: %@", pname, registrations];
+		return nil;
+	}
+}
+
+- (NSArray *)instantiateAllClassesImplementingProtocol:(Protocol *)proto withProperties:(NSDictionary *)props
+{
+	__block NSArray *registrations = nil;
+	NSString *pname = NSStringFromProtocol(proto);
+	
+	dispatch_sync(_queue, ^{
+		registrations = [[_registeredProtocols objectForKey:pname] copy];
+	});
+	
+	if([registrations count] > 0) {
+		NSMutableArray *allInst = [NSMutableArray arrayWithCapacity:[registrations count]];
+		for(NSString *klassName in registrations) {
+			Class klass = NSClassFromString(klassName);
+			id inst = [self instantiateClass:klass withProperties:props];
+			[allInst addObject:inst];
+		}
+		return [allInst copy];
+	} else {
+		return nil;
+	}
+}
+
 #pragma mark -
 - (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance
 {
@@ -177,7 +249,7 @@ static IJContext *DefaultContext = nil;
 			}
 			id propInstance = [self instantiateClass:propKlass withProperties:nil];
 			if(!propInstance) {
-				[NSException raise:NSInternalInconsistencyException format:@"Injector %@ doesn't know how to instantinate %@", self, propKlassName];
+				[NSException raise:NSInternalInconsistencyException format:@"Injector %@ doesn't know how to instantiate %@", self, propKlassName];
 			}
 			[instance setValue:propInstance forKey:propName];
 		}];
@@ -190,7 +262,7 @@ static IJContext *DefaultContext = nil;
 		[requiredPropsSet minusSet:registeredPropsSet];
 		BOOL hasMissingProperties = [requiredPropsSet count] > 0;
 		if(hasMissingProperties) {
-			[NSException raise:NSInternalInconsistencyException format:@"Class %@ instantinated with %@, but a set of %@ was requested.", NSStringFromClass(klass),
+			[NSException raise:NSInternalInconsistencyException format:@"Class %@ instantiated with %@, but a set of %@ was requested.", NSStringFromClass(klass),
 			 [klass injective_requiredProperties], registeredPropsSet];
 		}
 #endif
