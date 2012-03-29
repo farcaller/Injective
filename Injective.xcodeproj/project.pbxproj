@@ -23,6 +23,8 @@
 /* Begin PBXBuildFile section */
 		A505007D14D6CBD40070A332 /* IJLocalContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A594286E14D6BE9F003AA7D7 /* IJLocalContext.m */; };
 		A505008514D72BF50070A332 /* ITCarIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = A505008414D72BF50070A332 /* ITCarIvar.m */; };
+		A51EE8CF15246314005AD2F8 /* Car.xib in Resources */ = {isa = PBXBuildFile; fileRef = A51EE8CE15246314005AD2F8 /* Car.xib */; };
+		A51EE8D2152463ED005AD2F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51EE8D1152463ED005AD2F8 /* UIKit.framework */; };
 		A532BFFA14CB580A0034A43C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A532BFF914CB580A0034A43C /* Foundation.framework */; };
 		A532C00014CB580A0034A43C /* IJContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A532BFFF14CB580A0034A43C /* IJContext.m */; };
 		A532C00F14CB5C470034A43C /* IJClassRegistration.h in Headers */ = {isa = PBXBuildFile; fileRef = A532C00D14CB5C470034A43C /* IJClassRegistration.h */; };
@@ -48,6 +50,8 @@
 /* Begin PBXFileReference section */
 		A505008314D72BF50070A332 /* ITCarIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITCarIvar.h; path = Spec/Helpers/ITCarIvar.h; sourceTree = SOURCE_ROOT; };
 		A505008414D72BF50070A332 /* ITCarIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITCarIvar.m; path = Spec/Helpers/ITCarIvar.m; sourceTree = SOURCE_ROOT; };
+		A51EE8CE15246314005AD2F8 /* Car.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Car.xib; path = Spec/Support/Car.xib; sourceTree = SOURCE_ROOT; };
+		A51EE8D1152463ED005AD2F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A532BFF614CB580A0034A43C /* libInjective.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInjective.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A532BFF914CB580A0034A43C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A532BFFD14CB580A0034A43C /* Injective-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Injective-Prefix.pch"; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51EE8D2152463ED005AD2F8 /* UIKit.framework in Frameworks */,
 				A54DADEC14D4437700907553 /* SenTestingKit.framework in Frameworks */,
 				A589100C14D49C7700187EFD /* libInjective.a in Frameworks */,
 				A54DAE0214D44CC600907553 /* libKiwi.a in Frameworks */,
@@ -126,6 +131,7 @@
 		A532BFF814CB580A0034A43C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A51EE8D1152463ED005AD2F8 /* UIKit.framework */,
 				A532BFF914CB580A0034A43C /* Foundation.framework */,
 				A54DADEB14D4437700907553 /* SenTestingKit.framework */,
 				A54DAE0114D44CC600907553 /* libKiwi.a */,
@@ -176,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				A54DADF914D4437700907553 /* InjectiveTests-Prefix.pch */,
+				A51EE8CE15246314005AD2F8 /* Car.xib */,
 			);
 			name = "Supporting Files";
 			path = Spec/Support;
@@ -328,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51EE8CF15246314005AD2F8 /* Car.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

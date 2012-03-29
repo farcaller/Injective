@@ -85,6 +85,19 @@ typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 + (IJContext *)defaultContext;
 + (void)setDefaultContext:(IJContext *)context;
 
+/** Nib instantiation
+ *
+ *  There is no simple way to track object creation done by UINib. Injective solves this by hooking into
+ *  -awakeFromNib and setting up dependencies for known classes.
+ *
+ *  -registerOnAwakeFromNib does exactly this -- adds passed IJContext hook to nib awaking chain. Note
+ *  that class registration is looked up only in this one IJContext instance.
+ *
+ *  Note: the class injects into -[NSObject awakeFromNib] (existing noop) and -[UIViewController awakeFromNib]
+ *  as one does not call super.
+ */
+- (void)registerOnAwakeFromNib;
+
 /// Generic class registration methods
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode;
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode instantiationBlock:(IJContextInstantiationBlock)block;

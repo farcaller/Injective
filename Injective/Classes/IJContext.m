@@ -40,6 +40,7 @@ static IJContext *DefaultContext = nil;
 - (void)bindRegisteredPropertiesWithRegistration:(IJClassRegistration *)reg toInstance:(id)instance;
 - (void)registerProtocolsForClass:(Class)klass;
 - (void)registerProtocolNamed:(NSString *)name forClass:(Class)klass;
+- (void)registerOnAwakeFromNibForClass:(Class)klass;
 
 @end
 
@@ -85,6 +86,43 @@ static IJContext *DefaultContext = nil;
 	[_registeredClassesSingletonInstances release];
 	dispatch_release(_queue);
 	[super dealloc];
+}
+
+- (void)registerOnAwakeFromNib
+{
+	Class clsNSObject = objc_getClass("NSObject");
+	[self registerOnAwakeFromNibForClass:clsNSObject];
+	
+	// XXX: -[UIViewController awakeFromNib] does NOT call super as of iOS 5.1
+	Class clsUIViewController = objc_getClass("UIViewController");
+	if(clsUIViewController) {
+		// XXX: not available on macs obviously
+		[self registerOnAwakeFromNibForClass:clsUIViewController];
+	}
+}
+
+- (void)registerOnAwakeFromNibForClass:(Class)klass
+{
+	Method methAwakeFromNib = class_getInstanceMethod(klass, @selector(awakeFromNib));
+	
+	IMP impOrigAwakeFromNib = method_getImplementation(methAwakeFromNib);
+	
+	IMP impInjAwakeFromNib = imp_implementationWithBlock([[^(id b_self){
+		impOrigAwakeFromNib(b_self, @selector(awakeFromNib));
+		
+		__block IJClassRegistration *reg = nil;
+		NSString *klassName = NSStringFromClass([b_self class]);
+		
+		dispatch_sync(_queue, ^{
+			reg = [_registeredClasses objectForKey:klassName];
+		});
+		
+		if(reg) {
+			[self bindRegisteredPropertiesWithRegistration:reg toInstance:b_self];
+		}
+	} copy] autorelease]);
+	
+	method_setImplementation(methAwakeFromNib, impInjAwakeFromNib);
 }
 
 - (void)registerClass:(Class)klass instantiationMode:(IJContextInstantiationMode)mode

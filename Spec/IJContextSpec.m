@@ -1,8 +1,15 @@
+#import <UIKit/UIKit.h>
 
 SPEC_BEGIN(IJContextSpec)
 
 describe(@"IJContext", ^{
 	__block IJContext *context = nil;
+	__block IJContext *nibContext = nil;
+	
+	beforeAll(^{
+		nibContext = [[IJContext alloc] init];
+		[nibContext registerOnAwakeFromNib];
+	});
 	
 	beforeEach(^{
 		context = [[IJContext alloc] init];
@@ -66,8 +73,24 @@ describe(@"IJContext", ^{
 		[[car.name should] equal:@"test"];
 	});
 	
+	it(@"should provide dependencies for registered classes when instantiated in from nib", ^{
+		[nibContext registerClass:[ITCar class] instantiationMode:IJContextInstantiationModeFactory];
+		[nibContext registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
+		
+		NSArray *nib = [[NSBundle bundleForClass:[self class]] loadNibNamed:@"Car" owner:nil options:nil];
+		ITCar *car = [nib lastObject];
+		
+		[car shouldNotBeNil];
+		
+		[car.brakes shouldNotBeNil];
+	});
+	
 	afterEach(^{
 		[context release];
+	});
+	
+	afterAll(^{
+		[nibContext release];
 	});
 });
 
