@@ -102,7 +102,7 @@ static IJContext *DefaultContext = nil;
 {
 	dispatch_async(_queue, ^{
 		if([_registeredClasses objectForKey:klassName]) {
-			[NSException raise:NSInternalInconsistencyException format:@"Tired to register class %@ that is already registered in the injective context: %@", klass, self];
+			[NSException raise:NSInternalInconsistencyException format:@"Tried to register class %@ that is already registered in the injective context: %@", klass, self];
 		}
 		IJClassRegistration *reg = [IJClassRegistration registrationWithClass:klass instantiationMode:mode instantiationBlock:block];
 		[_registeredClasses setObject:reg forKey:klassName];
