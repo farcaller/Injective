@@ -76,6 +76,12 @@ typedef id(^IJContextInstantiationBlock)(NSDictionary *props);
 
 @interface IJContext : NSObject
 
+/** Singleton management
+ *
+ *  IJContext can be used as a singleton, however you must register the initial instance as
+ *  a singleton via +setDefaultContext.
+ *  Alternatively you can use IJocalContext, that allows objects to track originating context.
+ */
 + (IJContext *)defaultContext;
 + (void)setDefaultContext:(IJContext *)context;
 
