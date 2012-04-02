@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Injective by farcaller</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/farcaller/Injective">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/farcaller/Injective/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/farcaller/Injective/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Injective</h1>
+          <p>Cocoa / Cocoa Touch Dependency Injection framework with features for simpler TDD</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/farcaller">farcaller</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Injective framework</h1>
+
+<p>The purpose of this framework is to provide a simple dependency injection framework for iOS/Mac applications.</p>
+
+<p>Injective provides facilities for automatic connection of class instances by resolving properties dependencies. Additionally, Injective verifies that all required data is passed to instance for it to function correctly.</p>
+
+<p>Injective supports factory-like object creation and singleton object creation.</p>
+
+<h2>Setup</h2>
+
+<h3>Git version</h3>
+
+<h4>(For git users only) Add Injective as a submodule</h4>
+
+<p>If you're using git as your project's scm, add Injective as a submodue:</p>
+
+<div class="highlight">
+<pre>git submodule add <a href="https://github.com/farcaller/Injective">https://github.com/farcaller/Injective</a>
+</pre>
+</div>
+
+
+<h4>(For all others) Download Injective source</h4>
+
+<p>Download Injective source code from <a href="https://github.com/farcaller/Injective/zipball/master">https://github.com/farcaller/Injective/zipball/master</a> and unzip it to your project root directory.</p>
+
+<h4>Add Injective project to your workspace</h4>
+
+<p>Add Injective project to Project navigator (this will create a workspace if you don't have one). To do this, drag <em>Injective.xcodeproj</em> from the Finder to the very bottom of your project navigator panel:</p>
+
+<p><img src="http://farcaller.github.com/Injective/add-to-workspace.png" alt="Adding Injective to workspace"></p>
+
+<p>If you don't have a workspace yet, you will be asked: "Do you want to save this project in a new workspace?". Save it.</p>
+
+<h4>Add public headers to search path</h4>
+
+<p>Open your project's build settings and add <em>Injective/Headers</em> to <strong>Header Search paths</strong>. If you followed step 0, it's as simple as adding <code>$(PROJECT_DIR)/Injective/Injective/Headers</code>:</p>
+
+<p><img src="http://farcaller.github.com/Injective/add-header-search-path.png" alt="Adding header search paths"></p>
+
+<h4>(optional) Add Injective as a global header</h4>
+
+<p>Add the following line to your project's precompiled header (pch file): <code>#import "InjectiveContext.h"</code>:</p>
+
+<p><img src="http://farcaller.github.com/Injective/add-to-pch.png" alt="Updating precompiled header"></p>
+
+<p>This will allow you to use Injective without requiring you to #import it everywhere.</p>
+
+<h3>Precompiled version</h3>
+
+<p>There is a target to build Injective.framework, however at the current point there is no stable release. Precompiled builds would be added later, for now it's suggested that you use a recent git checkout.</p>
+
+<h2>Usage</h2>
+
+<h3>Configuring a default context</h3>
+
+<p>All the helpers require a global context to be set up. You can specify one with:</p>
+
+<div class="highlight">
+<pre><span class="n">IJContext</span> <span class="o">*</span><span class="n">defaultContext</span> <span class="o">=</span> <span class="p">[[</span><span class="n">IJContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">IJContext</span> <span class="nl">setDefaultContext:</span><span class="n">defaultContext</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Where to do that? As soon as you can. You can use <code>-application:didFinishLaunchingWithOptions:</code> of the application delegate in the iOS projects.</p>
+
+<h3>Registering a singleton class</h3>
+
+<p>To register a class you need to use <code>+registerClass:instantinationMode:</code> method of <em>InjectiveContext</em> class:</p>
+
+<div class="highlight">
+<pre><span class="n">IJContext</span> <span class="o">*</span><span class="n">myContext</span> <span class="o">=</span> <span class="p">[[</span><span class="n">IJContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">myContext</span> <span class="nl">registerClass:</span><span class="p">[</span><span class="n">MyAPIController</span> <span class="n">class</span><span class="p">]</span>
+      <span class="nl">instantinationMode:</span><span class="n">IJContextInstantinationModeSingleton</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p>Then, you can get an instance of the class with the following code:</p>
+
+<div class="highlight">
+<pre><span class="n">MyAPIController</span> <span class="o">*</span><span class="n">api</span> <span class="o">=</span> <span class="p">[</span><span class="n">myContext</span> <span class="nl">instantinateClass:</span><span class="p">[</span><span class="n">MyAPIController</span> <span class="n">class</span><span class="p">]</span>
+                                     <span class="nl">withProperties:</span><span class="nb">nil</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p><em>Note:</em> You can also use the <code>injective_register_singleton</code> macro in your class implementation:</p>
+
+<div class="highlight">
+<pre><span class="k">@implementation</span> <span class="nc">MyAPIController</span>
+
+<span class="n">injective_register_singleton</span><span class="p">(</span><span class="n">MyAPIController</span><span class="p">)</span>
+
+<span class="p">...</span>
+
+<span class="k">@end</span>
+</pre>
+</div>
+
+
+<h3>Registering a common class</h3>
+
+<p>You can register a common class using <strong>InjectiveContextInstantinationModeFactory</strong>. This way, Injective will create a new instance of the class each time you instantiate it:</p>
+
+<div class="highlight">
+<pre><span class="n">IJContext</span> <span class="o">*</span><span class="n">myContext</span> <span class="o">=</span> <span class="p">[[</span><span class="n">IJContext</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+<span class="p">[</span><span class="n">myContext</span>
+ <span class="nl">registerClass:</span><span class="p">[</span><span class="n">MyDetailViewController</span> <span class="n">class</span><span class="p">]</span>
+ <span class="nl">instantinationMode:</span><span class="n">IJContextInstantinationModeFactory</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p>In this mode, you can pass additional properties that would be mapped by KVC:</p>
+
+<div class="highlight">
+<pre><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys:</span>
+                   <span class="n">items</span><span class="p">,</span> <span class="s">@"items"</span><span class="p">,</span>
+                   <span class="nb">nil</span><span class="p">];</span>
+<span class="n">MyDetailViewController</span> <span class="o">*</span><span class="n">viewController</span> <span class="o">=</span> <span class="p">[</span><span class="n">myContext</span>
+                                          <span class="nl">instantinateClass:</span><span class="p">[</span><span class="n">MyDetailViewController</span> <span class="n">class</span><span class="p">]</span> 
+                                          <span class="nl">withProperties:</span><span class="n">d</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<p><em>Note:</em> You can also use the <code>injective_register</code> macro in your class implementation:</p>
+
+<div class="highlight">
+<pre><span class="k">@implementation</span> <span class="nc">MyDetailViewController</span>
+
+<span class="n">injective_register</span><span class="p">(</span><span class="n">MyDetailViewController</span><span class="p">)</span>
+
+<span class="p">...</span>
+
+<span class="k">@end</span>
+</pre>
+</div>
+
+
+<h3>Specifying dependencies</h3>
+
+<p>To make Injective actually useful, you need to specify a set of properties, that your class requires. You can do this via <code>+injective_requredProperties</code> method:</p>
+
+<div class="highlight">
+<pre><span class="k">@interface</span> <span class="nc">MyDetailViewController</span> : <span class="nc">UIViewController</span>
+
+<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">strong</span><span class="p">)</span> <span class="n">MyAPIController</span> <span class="o">*</span><span class="n">apiController</span><span class="p">;</span>
+
+<span class="k">@end</span>
+
+
+<span class="k">@implementation</span> <span class="nc">MyDetailViewController</span>
+
+<span class="n">injective_register</span><span class="p">(</span><span class="n">MyDetailViewController</span><span class="p">)</span>
+
+<span class="o">+</span> <span class="p">(</span><span class="n">NSSet</span> <span class="o">*</span><span class="p">)</span><span class="n">injective_requredProperties</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">NSSet</span> <span class="nl">setWithObject:</span><span class="s">@"apiController"</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">@end</span>
+</pre>
+</div>
+
+
+<p>There's another handy macro for you -- <code>injective_requires</code>, that does the same job:</p>
+
+<div class="highlight">
+<pre><span class="k">@implementation</span> <span class="nc">MyDetailViewController</span>
+
+<span class="n">injective_register</span><span class="p">(</span><span class="n">MyDetailViewController</span><span class="p">)</span>
+<span class="n">injective_requires</span><span class="p">(</span><span class="s">@"apiController"</span><span class="p">)</span>
+
+<span class="k">@end</span>
+</pre>
+</div>
+
+
+<h3>Instantiation helpers</h3>
+
+<p>You can instantiate any object in default context using the following class method of NSObject's category:</p>
+
+<div class="highlight">
+<pre><span class="n">MyDetailViewController</span> <span class="o">*</span><span class="n">viewController</span> <span class="o">=</span> <span class="p">[</span><span class="n">MyDetailViewController</span> <span class="n">injectiveInstantiate</span><span class="p">];</span>
+</pre>
+</div>
+
+
+<h2>Licensing</h2>
+
+<p>Injective is a MIT-licensed framework. See details in <em>LICENSE</em> file.</p>
+
+<h2>Credits</h2>
+
+<p><a href="https://flattr.com/submit/auto?user_id=farcaller&amp;url=https://github.com/farcaller/Injective&amp;title=Injective&amp;language=&amp;tags=github&amp;category=software"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this git repo"></a></p>
+
+<p>Injective framework is originally written by Vladimir "Farcaller" Pouzanov &lt;<a href="mailto:farcaller@gmail.com">farcaller@gmail.com</a>&gt;.</p>
+
+<p>A few ideas are based on Objection framework (<a href="https://github.com/atomicobject/objection">https://github.com/atomicobject/objection</a>).</p>
+
+<h2>Bugs / Suggestions</h2>
+
+<p>I'm always open to communication. Please file a ticket via github issues system at <a href="https://github.com/farcaller/Injective/issues/new">https://github.com/farcaller/Injective/issues/new</a>.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
