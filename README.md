@@ -24,23 +24,21 @@ Download Injective source code from https://github.com/farcaller/Injective/zipba
 
 #### Add Injective project to your workspace
 
-Add Injective project to Project navigator (this will create a workspace if you don't have one). To do this, drag *Injective.xcodeproj* from the Finder to the very bottom of your project navigator panel:
-
-![Adding Injective to workspace](http://farcaller.github.com/Injective/add-to-workspace.png)
+Add Injective project to Project navigator (this will create a workspace if you don't have one). To do this, drag *Injective.xcodeproj* from the Finder to the very bottom of your project navigator panel.
 
 If you don't have a workspace yet, you will be asked: "Do you want to save this project in a new workspace?". Save it.
 
 #### Add public headers to search path
 
-Open your project's build settings and add *Injective/Headers* to **Header Search paths**. If you followed step 0, it's as simple as adding `$(PROJECT_DIR)/Injective/Injective/Headers`:
-
-![Adding header search paths](http://farcaller.github.com/Injective/add-header-search-path.png)
+Open your project's build settings and add *Injective/Headers* to **Header Search paths**. If you followed step 0, it's as simple as adding `$(PROJECT_DIR)/Injective/Injective/Headers`
 
 #### (optional) Add Injective as a global header
 
 Add the following line to your project's precompiled header (pch file): `#import "InjectiveContext.h"`:
 
-![Updating precompiled header](http://farcaller.github.com/Injective/add-to-pch.png)
+```objc
+#import "IJContext.h"
+```
 
 This will allow you to use Injective without requiring you to #import it everywhere.
 
@@ -55,20 +53,20 @@ There is a target to build Injective.framework, however at the current point the
 All the helpers require a global context to be set up. You can specify one with:
 
 ```objc
-InjectiveContext *defaultContext = [[InjectiveContext alloc] init];
-[InjectiveContext setDefaultContext:defaultContext];
+IJContext *defaultContext = [[IJContext alloc] init];
+[IJContext setDefaultContext:defaultContext];
 ```
 
 Where to do that? As soon as you can. You can use `-application:didFinishLaunchingWithOptions:` of the application delegate in the iOS projects.
 
 ### Registering a singleton class
 
-To register a class you need to use `+registerClass:instantinationMode:` method of *InjectiveContext* class:
+To register a class you need to use `+registerClass:instantinationMode:` method of *IJContext* class:
 
 ```objc
-InjectiveContext *myContext = [[InjectiveContext alloc] init];
+IJContext *myContext = [[IJContext alloc] init];
 [myContext registerClass:[MyAPIController class]
-      instantinationMode:InjectiveContextInstantinationModeSingleton];
+      instantinationMode:IJContextInstantinationModeSingleton];
 ```
 
 Then, you can get an instance of the class with the following code:
@@ -92,13 +90,13 @@ injective_register_singleton(MyAPIController)
 
 ### Registering a common class
 
-You can register a common class using **InjectiveContextInstantinationModeFactory**. This way, Injective will create a new instance of the class each time you instantiate it:
+You can register a common class using **IJContextInstantinationModeFactory**. This way, Injective will create a new instance of the class each time you instantiate it:
 
 ```objc
-InjectiveContext *myContext = [[InjectiveContext alloc] init];
+IJContext *myContext = [[IJContext alloc] init];
 [myContext
  registerClass:[MyDetailViewController class]
- instantinationMode:InjectiveContextInstantinationModeFactory];
+ instantinationMode:IJContextInstantinationModeFactory];
 ```
 
 In this mode, you can pass additional properties that would be mapped by KVC:
@@ -175,6 +173,7 @@ Injective is a MIT-licensed framework. See details in *LICENSE* file.
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=farcaller&url=https://github.com/farcaller/Injective&title=Injective&language=&tags=github&category=software)
 
+[![endorse](http://api.coderwall.com/farcaller/endorsecount.png)](http://coderwall.com/farcaller)
 
 Injective framework is originally written by Vladimir "Farcaller" Pouzanov <<farcaller@gmail.com>>.
 
