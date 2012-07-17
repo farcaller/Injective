@@ -252,7 +252,7 @@ static IJContext *DefaultContext = nil;
 			id inst = [self instantiateClass:klass withProperties:props];
 			[allInst addObject:inst];
 		}
-		return [allInst copy];
+		return [[allInst copy] autorelease];
 	} else {
 		return nil;
 	}
