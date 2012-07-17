@@ -307,7 +307,7 @@
 		A532BFED14CB580A0034A43C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Ciklum ApS";
 			};
 			buildConfigurationList = A532BFF014CB580A0034A43C /* Build configuration list for PBXProject "Injective" */;
