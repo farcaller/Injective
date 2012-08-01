@@ -85,6 +85,14 @@ describe(@"IJContext", ^{
 		[car.brakes shouldNotBeNil];
 	});
 	
+	it(@"sends awake messages to instantiated classes that support the behaviour", ^{
+		[IJContext setDefaultContext:context];
+		[context registerClass:[ITBrakes class] instantiationMode:IJContextInstantiationModeFactory];
+		
+		ITBrakes *brakes = [ITBrakes injectiveInstantiate];
+		[[theValue(brakes.awaken) should] beTrue];
+	});
+	
 	afterEach(^{
 		[context release];
 	});

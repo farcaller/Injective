@@ -2,4 +2,9 @@
 
 @implementation ITBrakes
 
+- (void)awakeFromInjective
+{
+	self.awaken = YES;
+}
+
 @end

@@ -319,6 +319,10 @@ static IJContext *DefaultContext = nil;
 	[self bindRegisteredPropertiesWithRegistration:reg toInstance:instance];
 	[instance setValuesForKeysWithDictionary:props];
 	
+	if([instance respondsToSelector:@selector(awakeFromInjective)]) {
+		[instance awakeFromInjective];
+	}
+	
 	return instance;
 }
 

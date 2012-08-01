@@ -50,6 +50,10 @@
 + (id)injectiveInstantiateWithPropertiesDictionary:(NSDictionary *)properties;
 + (id)injectiveInstantiate;
 
+/** The message that is being sent to an instance after all the binding is complete
+ */
+- (void)awakeFromInjective;
+
 @end
 
 #pragma mark - IJContext
