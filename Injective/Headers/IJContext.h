@@ -50,6 +50,10 @@
 + (id)injectiveInstantiateWithPropertiesDictionary:(NSDictionary *)properties;
 + (id)injectiveInstantiate;
 
+@end
+
+@interface NSObject (InjectiveSupport)
+
 /** The message that is being sent to an instance after all the binding is complete
  */
 - (void)awakeFromInjective;
